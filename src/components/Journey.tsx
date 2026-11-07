@@ -22,6 +22,16 @@ function ChapterCard({ chapter, journey }: { chapter: Chapter; journey: boolean 
           ))}
         </div>
       )}
+      {journey && (
+        <dl className="chapter-stats">
+          {chapter.stats.map((st) => (
+            <div key={st.label}>
+              <dt>{st.value}</dt>
+              <dd>{st.label}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
     </div>
   );
 }
@@ -169,6 +179,9 @@ export function Journey() {
           {chapters.map((c, i) => (
             <article className="timeline-item journey-card" key={c.marker} aria-current={i === active ? 'step' : undefined}>
               <div className="timeline-marker">{c.marker}</div>
+              <span className="chapter-ghost" aria-hidden="true">
+                {c.marker}
+              </span>
               <ChapterCard chapter={c} journey />
               <div className="chapter-marker" aria-hidden="true">
                 <strong>{c.marker}</strong>
@@ -176,6 +189,13 @@ export function Journey() {
               </div>
             </article>
           ))}
+        </div>
+
+        <a className="journey-contact" href={`mailto:${profile.email}`}>
+          <span aria-hidden="true">✉</span> {profile.email}
+        </a>
+        <div className="journey-counter" aria-hidden="true">
+          <b>{chapters[active].marker}</b> / {String(chapters.length).padStart(2, '0')}
         </div>
 
         <StoryAvatar walking={walking} photo={profile.photo} />

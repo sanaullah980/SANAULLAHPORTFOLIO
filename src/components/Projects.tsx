@@ -1,8 +1,4 @@
-'use client';
-
-import { useCallback, useState } from 'react';
-import { profile, type Project, type ProjectIconKey } from '@/content/profile';
-import { SanaDetails } from './SanaAI';
+import { profile, type ProjectIconKey } from '@/content/profile';
 
 function ProjectIcon({ kind }: { kind: ProjectIconKey }) {
   switch (kind) {
@@ -42,9 +38,6 @@ function ProjectIcon({ kind }: { kind: ProjectIconKey }) {
 
 export function Projects() {
   const { projects } = profile;
-  const items: Project[] = projects.items;
-  const [sanaOpen, setSanaOpen] = useState(false);
-  const closeSana = useCallback(() => setSanaOpen(false), []);
   return (
     <section className="projects section-wrap" id="projects" aria-labelledby="projects-title">
       <div className="section-heading projects-heading">
@@ -57,8 +50,8 @@ export function Projects() {
         <p className="section-intro">{projects.intro}</p>
       </div>
       <div className="project-grid">
-        {items.map((p, i) => (
-          <article key={p.title} className={`project-card reveal${p.featured ? ' project-featured' : ''}${p.detail ? ' project-highlight' : ''}`}>
+        {projects.items.map((p, i) => (
+          <article key={p.title} className={`project-card reveal${'featured' in p && p.featured ? ' project-featured' : ''}`}>
             <div className="project-topline">
               <span className="project-number">{String(i + 1).padStart(2, '0')}</span>
               <span className={`project-status status-${p.status}`}>
@@ -74,24 +67,15 @@ export function Projects() {
                 <span key={t}>{t}</span>
               ))}
             </div>
-            {p.detail === 'sana' ? (
-              <button type="button" className="project-detail-btn" aria-haspopup="dialog" onClick={() => setSanaOpen(true)}>
-                View details <span aria-hidden="true">→</span>
-              </button>
-            ) : (
-              p.link && (
-                <a className="project-link" href={p.link.href} target="_blank" rel="noreferrer">
-                  {p.link.label} <span aria-hidden="true">↗</span>
-                </a>
-              )
-            )}
+            <a className="project-link" href={p.link.href} target="_blank" rel="noreferrer">
+              {p.link.label} <span aria-hidden="true">↗</span>
+            </a>
           </article>
         ))}
       </div>
       <a className="all-projects-link" href={profile.github} target="_blank" rel="noreferrer">
         {projects.allLink} <span aria-hidden="true">↗</span>
       </a>
-      {sanaOpen && <SanaDetails onClose={closeSana} />}
     </section>
   );
 }

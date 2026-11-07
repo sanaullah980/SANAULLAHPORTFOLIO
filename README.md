@@ -25,17 +25,15 @@ projects, skills, about, contact and links. Your photo is `public/photo.jpg`.
 - **Journey** (`src/components/Journey.tsx`): on desktop, vertical scroll drives a horizontal walk.
   The character stays put while the chapters slide past. Arrow keys and the bottom rail jump between chapters.
   On phones, with reduced motion, or without JavaScript, it is a plain vertical timeline.
-- **3D character** (`src/components/StoryAvatar.tsx` → `AvatarCanvas.tsx`): your FBX avatar walks while you scroll and
-  its head follows the cursor. Without WebGL (or on very low-memory / data-saver devices) your photo is shown instead.
+- **3D character** (`src/components/StoryAvatar.tsx`, `src/lib/avatar.ts`): your own rigged avatar
+  (`public/models/avatar.fbx`), dressed in a navy three-piece suit: long sleeves with white cuffs, shirt and collar,
+  tie, waistcoat, lapels and pocket square, plus navy trousers and black shoes. The suit pieces are fitted to the
+  model's body in code, and the clothes' fabric is recoloured (`public/models/outfit-*.jpg`). It walks while you
+  scroll, blinks, and its head follows the cursor. Without WebGL (or on very low-memory / data-saver devices)
+  your photo is shown instead.
+- **Contact:** your email is set in `src/content/profile.ts` (`email`) and appears in the journey, contact section and footer.
 
-## Avatar
+## Changing the avatar
 
-`public/models/avatar.fbx` is rendered by `src/components/AvatarCanvas.tsx` (FBXLoader). It is posed procedurally from
-the skeleton (arms lowered, walk cycle, head follows the cursor) and its outfit texture is swapped for
-`public/models/outfit-formal.jpg` (white shirt, charcoal trousers, black shoes). To change the outfit, edit that JPG
-(same UV layout as the original). The photo in `public/photo.jpg` is the fallback when WebGL is unavailable.
-
-## Sana AI section
-
-`src/components/SanaAI.tsx` + the `sana` block in `src/content/profile.ts`. The Analyzer / Predictor / Calculator previews
-use standard formulas in the browser; they are illustrations of each engine, not the language model.
+Replace `public/models/avatar.fbx` with another Ready Player Me-style FBX (same bone names, a mesh named `outfit`
+for the clothes). Colours of the suit pieces are at the top of `dressAvatar` in `src/lib/avatar.ts`.

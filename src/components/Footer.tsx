@@ -8,6 +8,9 @@ export function Footer() {
         <span>.</span>
       </a>
       <p>{profile.footer.text}</p>
+      <a className="footer-mail" href={`mailto:${profile.email}`}>
+        {profile.email}
+      </a>
       <a href="#top" className="back-top">
         {profile.footer.backToTop}
       </a>

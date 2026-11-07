@@ -16,13 +16,21 @@ export function Hero() {
         </h1>
         <p className="hero-lead">{hero.lead}</p>
         <div className="hero-actions">
-          <a className="button button-primary" href={hero.primaryHref}>
+          <a className="button button-primary" href="#projects">
             {hero.primaryCta} <span aria-hidden="true">↓</span>
           </a>
           <a className="button button-quiet" href={profile.github} target="_blank" rel="noreferrer">
             {hero.secondaryCta} <span aria-hidden="true">↗</span>
           </a>
         </div>
+        <dl className="hero-stats">
+          {hero.stats.map((st) => (
+            <div key={st.label}>
+              <dt>{st.value}</dt>
+              <dd>{st.label}</dd>
+            </div>
+          ))}
+        </dl>
         <div className="hero-note">
           <span className="note-line" />
           <span>{hero.note}</span>
