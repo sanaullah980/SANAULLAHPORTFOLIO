@@ -16,7 +16,7 @@ export function Hero() {
         </h1>
         <p className="hero-lead">{hero.lead}</p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#projects">
+          <a className="button button-primary" href={hero.primaryHref}>
             {hero.primaryCta} <span aria-hidden="true">↓</span>
           </a>
           <a className="button button-quiet" href={profile.github} target="_blank" rel="noreferrer">

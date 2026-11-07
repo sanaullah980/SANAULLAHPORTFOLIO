@@ -1,39 +1,25 @@
 # Sanaullah — Portfolio (Next.js)
 
-Next.js 15 (App Router) + React 19 + TypeScript, with a react-three-fiber 3D character.
-Styled with warm paper, near-black ink, one orange accent and frosted glass; no gradients.
+Next.js 15 · React 19 · TypeScript · three.js (react-three-fiber).
 
 ## Run
-
-Requires Node.js 20+.
-
-```bash
+```
 npm install
-npm run dev        # http://localhost:3000
-npm run build && npm start
+npm run dev      # http://localhost:3000
+npm run build
 ```
 
-Deploys to Vercel with no configuration (import the repo).
+## Deploy on Vercel
+Import the repo, make sure the **Root Directory** is the folder that contains `package.json`
+(not a parent folder), framework preset **Next.js**. No environment variables needed.
 
-## Edit your content
+## Edit content
+Everything is in `src/content/profile.ts`: text, email, projects, chapters, Sana AI details.
+- Projects: MyBusiness, Sana AI, Connect PAF.
+- Connect PAF has `soon: true` and no link. When it is ready, remove `soon` and add
+  `link: { label: 'Open Connect PAF', href: '<url>' }` and set `status: 'progress'`.
 
-Everything shown on the site lives in **`src/content/profile.ts`**: hero text, journey chapters,
-projects, skills, about, contact and links. Your photo is `public/photo.jpg`.
-
-## How the home page works
-
-- **Journey** (`src/components/Journey.tsx`): on desktop, vertical scroll drives a horizontal walk.
-  The character stays put while the chapters slide past. Arrow keys and the bottom rail jump between chapters.
-  On phones, with reduced motion, or without JavaScript, it is a plain vertical timeline.
-- **3D character** (`src/components/StoryAvatar.tsx`, `src/lib/avatar.ts`): your own rigged avatar
-  (`public/models/avatar.fbx`), dressed in a navy three-piece suit: long sleeves with white cuffs, shirt and collar,
-  tie, waistcoat, lapels and pocket square, plus navy trousers and black shoes. The suit pieces are fitted to the
-  model's body in code, and the clothes' fabric is recoloured (`public/models/outfit-*.jpg`). It walks while you
-  scroll, blinks, and its head follows the cursor. Without WebGL (or on very low-memory / data-saver devices)
-  your photo is shown instead.
-- **Contact:** your email is set in `src/content/profile.ts` (`email`) and appears in the journey, contact section and footer.
-
-## Changing the avatar
-
-Replace `public/models/avatar.fbx` with another Ready Player Me-style FBX (same bone names, a mesh named `outfit`
-for the clothes). Colours of the suit pieces are at the top of `dressAvatar` in `src/lib/avatar.ts`.
+## Avatar
+`public/models/avatar.fbx` is dressed in a navy three-piece suit at load time (`src/lib/avatar.ts`).
+It walks side-on while you scroll, then turns to the text and gestures (wave / present / think / point)
+per chapter, blinks, smiles and follows the cursor. Without WebGL the photo is shown instead.

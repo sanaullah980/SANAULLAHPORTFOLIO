@@ -28,11 +28,11 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
   outfit.material.normalMap = textures.normalMap;
   outfit.material.needsUpdate = true;
 
-  // keep only the blink shapes (the file ships ~90 face shapes we don't need)
+  // keep only the blink and smile shapes (the file ships ~90 face shapes we don't need)
   model.traverse((o) => {
     if (!o.isMesh || !o.geometry?.morphAttributes?.position) return;
     const dict = o.morphTargetDictionary || {};
-    const keep = Object.keys(dict).filter((k) => /^eyeBlink(Left|Right)$/.test(k));
+    const keep = Object.keys(dict).filter((k) => /^(eyeBlink(Left|Right)|mouthSmile(Left|Right))$/.test(k));
     if (!keep.length) {
       o.geometry.morphAttributes = {};
       o.morphTargetInfluences = undefined;
@@ -402,6 +402,7 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
   const tmpQ2 = new THREE.Quaternion();
   const worldQ = new THREE.Quaternion();
   const parentQ = new THREE.Quaternion();
+  const frameQ = new THREE.Quaternion(); // the character's own frame (the wrapper may be yawed)
 
   function setWorldQuat(bone: THREE.Bone, q: THREE.Quaternion) {
     bone.parent.getWorldQuaternion(parentQ);
@@ -410,12 +411,13 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
   }
   function aim(bone: THREE.Bone, child: THREE.Bone, target: THREE.Vector3) {
     const cur = child.getWorldPosition(new V3()).sub(bone.getWorldPosition(new V3())).normalize();
-    tmpQ.setFromUnitVectors(cur, target.clone().normalize());
+    tmpQ.setFromUnitVectors(cur, target.clone().normalize().applyQuaternion(frameQ));
     bone.getWorldQuaternion(worldQ);
     setWorldQuat(bone, tmpQ.multiply(worldQ));
   }
+  const mix = (a: THREE.Vector3, b: THREE.Vector3, t: number) => a.clone().lerp(b, t).normalize();
   function rotateWorld(bone: THREE.Bone, axis: THREE.Vector3, angle: number) {
-    tmpQ2.setFromAxisAngle(axis, angle);
+    tmpQ2.setFromAxisAngle(axis.clone().applyQuaternion(frameQ), angle);
     bone.getWorldQuaternion(worldQ);
     setWorldQuat(bone, tmpQ2.multiply(worldQ));
   }
@@ -429,7 +431,9 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
    * phase: walk phase in radians; amount: 0 (standing) .. 1 (full stride);
    * time: seconds for idle motion; look: {x,y} in -1..1 for the head.
    */
-  return function pose(phase: number, amount: number, time: number, look: { x: number; y: number }) {
+  return function pose(phase: number, amount: number, time: number, look: { x: number; y: number }, gesture = -1, gAmount = 0) {
+    if (model.parent) model.parent.getWorldQuaternion(frameQ);
+    else frameQ.identity();
     for (const n of names) bones[n].quaternion.copy(restQ[n]);
     model.position.y = baseY;
     model.updateMatrixWorld(true);
@@ -449,10 +453,33 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
       const th = -0.42 * A * legSwing + 0.03 * Math.sin(time * 1.3 + s);
       const out = 0.11;
       const armDir = new V3(s * out, -Math.cos(th), Math.sin(th));
-      aim(bones[side + 'Arm'], bones[side + 'ForeArm'], armDir);
       const bend = 0.2 + A * 0.28 * Math.max(0, Math.sin(th * 1.0 + 0.6));
       const psi = th + bend;
-      aim(bones[side + 'ForeArm'], bones[side + 'Hand'], new V3(s * 0.08, -Math.cos(psi), Math.sin(psi)));
+      let upper = armDir;
+      let fore = new V3(s * 0.08, -Math.cos(psi), Math.sin(psi));
+      // chapter gestures use the character's right arm (-X) while standing
+      const g = gesture >= 0 && s < 0 ? gAmount * (1 - A) : 0;
+      if (g > 0.001) {
+        const t = time;
+        let gu = upper, gf = fore;
+        if (gesture === 0) { // wave hello
+          gu = new V3(-0.8, 0.55, 0.12);
+          gf = new V3(-0.35 - 0.35 * Math.sin(t * 7), 0.9, 0.1);
+        } else if (gesture === 1) { // present: open hand out front
+          gu = new V3(-0.45, -0.7, 0.35);
+          gf = new V3(-0.35, -0.05 + 0.04 * Math.sin(t * 2), 0.95);
+        } else if (gesture === 2) { // thinking: hand to chin
+          gu = new V3(-0.12, -0.9, 0.35);
+          gf = new V3(0.2, 0.7, 0.55);
+        } else { // point toward the next chapter
+          gu = new V3(-0.55, -0.35, 0.7);
+          gf = new V3(-0.5, 0.05 + 0.03 * Math.sin(t * 2.4), 0.85);
+        }
+        upper = mix(upper, gu, g);
+        fore = mix(fore, gf, g);
+      }
+      aim(bones[side + 'Arm'], bones[side + 'ForeArm'], upper);
+      aim(bones[side + 'ForeArm'], bones[side + 'Hand'], fore);
     }
 
     // legs
@@ -475,16 +502,19 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
     // head follows the cursor, with an occasional blink
     rotateWorld(bones.Head, Y, look.x * 0.5);
     rotateWorld(bones.Head, X, -look.y * 0.22);
+    let blink = 0;
     if (time > blinkAt) {
       const k = (time - blinkAt) / 0.16;
-      const v = k < 1 ? Math.sin(k * Math.PI) : 0;
-      heads.forEach((m) => {
-        const d = m.morphTargetDictionary;
-        if (!d) return;
-        for (const key of Object.keys(d)) m.morphTargetInfluences[d[key]] = v;
-      });
+      blink = k < 1 ? Math.sin(k * Math.PI) : 0;
       if (k >= 1) blinkAt = time + 2.5 + Math.random() * 3;
     }
+    const smile = 0.35 + 0.25 * gAmount;
+    heads.forEach((m) => {
+      const d = m.morphTargetDictionary;
+      const inf = m.morphTargetInfluences;
+      if (!d || !inf) return;
+      for (const key of Object.keys(d)) inf[d[key]] = key.startsWith('eyeBlink') ? blink : smile;
+    });
 
     // plant the lowest foot on the ground line (this also creates the natural bob)
     model.updateMatrixWorld(true);
