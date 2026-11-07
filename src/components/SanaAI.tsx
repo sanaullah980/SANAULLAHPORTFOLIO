@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { profile, type SanaModuleKey } from '@/content/profile';
 
 /* ---------- small maths helpers (all client-side, standard formulas) ---------- */
@@ -304,39 +304,81 @@ function Metric({ label, value, accent }: { label: string; value: string; accent
   );
 }
 
-/* ---------- section ---------- */
+/* ---------- details dialog (opened from the Sana AI project card) ---------- */
 
-export function SanaAI() {
+export function SanaDetails({ onClose }: { onClose: () => void }) {
   const { sana } = profile;
   const [tab, setTab] = useState<SanaModuleKey>('analyzer');
   const [series, setSeries] = useState('120, 135, 128, 150, 162, 158, 176');
   const active = sana.modules.find((m) => m.key === tab)!;
+  const dialog = useRef<HTMLDivElement>(null);
+  const closeBtn = useRef<HTMLButtonElement>(null);
 
-  const onKey = (e: React.KeyboardEvent, i: number) => {
-    if (e.key !== 'ArrowDown' && e.key !== 'ArrowRight' && e.key !== 'ArrowUp' && e.key !== 'ArrowLeft') return;
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeBtn.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialog.current) return;
+      const items = Array.from(
+        dialog.current.querySelectorAll<HTMLElement>('button, a[href], input, [tabindex]:not([tabindex="-1"])'),
+      ).filter((el) => !el.hasAttribute('disabled'));
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = overflow;
+      previous?.focus();
+    };
+  }, [onClose]);
+
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    if (!['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(e.key)) return;
     e.preventDefault();
-    const d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1;
+    const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1;
     const next = sana.modules[(i + d + sana.modules.length) % sana.modules.length];
     setTab(next.key);
     document.getElementById(`sana-tab-${next.key}`)?.focus();
   };
 
   return (
-    <section className="sana section-wrap" id={sana.id} aria-labelledby="sana-title">
-      <div className="sana-shell">
+    <div
+      className="sana-overlay"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="sana-modal" ref={dialog} role="dialog" aria-modal="true" aria-labelledby="sana-title">
+        <button className="sana-close" ref={closeBtn} onClick={onClose} aria-label="Close project details">
+          <span aria-hidden="true">✕</span>
+        </button>
+
         <header className="sana-head">
-          <div className="sana-head-copy">
-            <p className="sana-eyebrow">
-              <span>{sana.eyebrow}</span>
-              <span className="sana-status">
-                <i /> {sana.status}
-              </span>
-            </p>
-            <h2 id="sana-title">
-              {sana.title} <span>{sana.titleAccent}</span>
-            </h2>
-            <p className="sana-lead">{sana.lead}</p>
-          </div>
+          <p className="sana-eyebrow">
+            <span>{sana.eyebrow}</span>
+            <span className="sana-status">
+              <i /> {sana.status}
+            </span>
+          </p>
+          <h2 id="sana-title">
+            {sana.title} <span>{sana.titleAccent}</span>
+          </h2>
+          <p className="sana-lead">{sana.lead}</p>
           <ul className="sana-langs" aria-label="Supported languages">
             {sana.languages.map((l) => (
               <li key={l} lang={l === 'اردو' ? 'ur' : 'en'}>
@@ -347,53 +389,51 @@ export function SanaAI() {
         </header>
 
         <p className="sana-label">{sana.modulesLabel}</p>
-        <div className="sana-workbench">
-          <div className="sana-tabs" role="tablist" aria-label="Sana AI engines" aria-orientation="vertical">
-            {sana.modules.map((m, i) => (
-              <button
-                key={m.key}
-                id={`sana-tab-${m.key}`}
-                role="tab"
-                aria-selected={tab === m.key}
-                aria-controls="sana-panel"
-                tabIndex={tab === m.key ? 0 : -1}
-                className="sana-tab"
-                onClick={() => setTab(m.key)}
-                onKeyDown={(e) => onKey(e, i)}
-              >
-                <span className="sana-tab-index">{m.index}</span>
-                <span className="sana-tab-body">
-                  <b>{m.name}</b>
-                  <em>{m.tagline}</em>
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="sana-tabs" role="tablist" aria-label="Sana AI engines">
+          {sana.modules.map((m, i) => (
+            <button
+              key={m.key}
+              id={`sana-tab-${m.key}`}
+              role="tab"
+              aria-selected={tab === m.key}
+              aria-controls="sana-panel"
+              tabIndex={tab === m.key ? 0 : -1}
+              className="sana-tab"
+              onClick={() => setTab(m.key)}
+              onKeyDown={(e) => onTabKey(e, i)}
+            >
+              <span className="sana-tab-index">{m.index}</span>
+              <span className="sana-tab-body">
+                <b>{m.name}</b>
+                <em>{m.tagline}</em>
+              </span>
+            </button>
+          ))}
+        </div>
 
-          <div className="sana-panel" id="sana-panel" role="tabpanel" aria-labelledby={`sana-tab-${tab}`}>
-            <div className="sana-panel-head">
-              <h3>{active.name}</h3>
-              <span className="sana-preview-tag">LIVE PREVIEW</span>
-            </div>
-            <ul className="sana-points">
-              {active.points.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-            {tab === 'analyzer' && <Analyzer series={series} setSeries={setSeries} />}
-            {tab === 'predictor' && <Predictor series={series} setSeries={setSeries} />}
-            {tab === 'calculator' && <Calculator />}
-            <p className="sana-note">{sana.demoNote}</p>
+        <div className="sana-panel" id="sana-panel" role="tabpanel" aria-labelledby={`sana-tab-${tab}`}>
+          <div className="sana-panel-head">
+            <h3>{active.name}</h3>
+            <span className="sana-preview-tag">LIVE PREVIEW</span>
           </div>
+          <ul className="sana-points">
+            {active.points.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+          {tab === 'analyzer' && <Analyzer series={series} setSeries={setSeries} />}
+          {tab === 'predictor' && <Predictor series={series} setSeries={setSeries} />}
+          {tab === 'calculator' && <Calculator />}
+          <p className="sana-note">{sana.demoNote}</p>
         </div>
 
         <p className="sana-label">{sana.pipelineLabel}</p>
         <ol className="sana-pipeline">
-          {sana.pipeline.map((s) => (
-            <li key={s.step}>
-              <span>{s.step}</span>
-              <b>{s.title}</b>
-              <p>{s.text}</p>
+          {sana.pipeline.map((st) => (
+            <li key={st.step}>
+              <span>{st.step}</span>
+              <b>{st.title}</b>
+              <p>{st.text}</p>
             </li>
           ))}
         </ol>
@@ -407,11 +447,11 @@ export function SanaAI() {
               ))}
             </div>
           </div>
-          <a className="button sana-cta" href={sana.link.href} target="_blank" rel="noreferrer">
+          <a className="button button-primary" href={sana.link.href} target="_blank" rel="noreferrer">
             {sana.link.label} <span aria-hidden="true">↗</span>
           </a>
         </footer>
       </div>
-    </section>
+    </div>
   );
 }

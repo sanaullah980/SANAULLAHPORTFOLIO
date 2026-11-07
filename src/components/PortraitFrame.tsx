@@ -1,10 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import { profile } from '@/content/profile';
-
-const AvatarCanvas = dynamic(() => import('./AvatarCanvas'), { ssr: false });
 
 /** The hero portrait; on desktop it tilts slightly toward the cursor. */
 export function PortraitFrame() {
@@ -35,14 +32,14 @@ export function PortraitFrame() {
   return (
     <div
       className="hero-visual"
-      role="img"
-      aria-label={`3D avatar of ${profile.name}`}
+      aria-label={`Portrait of ${profile.name}`}
       ref={visual}
       onPointerMove={onMove}
       onPointerLeave={onLeave}
     >
       <div className="portrait-frame" ref={frame}>
-        <AvatarCanvas variant="portrait" photo={profile.photo} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="profile-photo" src={profile.photo} alt={profile.name} />
         <div className="portrait-ring ring-one" />
         <div className="portrait-ring ring-two" />
         <span className="portrait-chip chip-top">

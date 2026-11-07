@@ -2,7 +2,6 @@ import { Ambient } from '@/components/Ambient';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Journey } from '@/components/Journey';
-import { SanaAI } from '@/components/SanaAI';
 import { Projects } from '@/components/Projects';
 import { Skills } from '@/components/Skills';
 import { About } from '@/components/About';
@@ -21,7 +20,6 @@ export default function HomePage() {
       <Header />
       <main id="main">
         <Hero />
-        <SanaAI />
         <section className="story section-wrap" id="story" aria-labelledby="story-title">
           <div className="section-heading">
             <p className="eyebrow">{profile.story.eyebrow}</p>

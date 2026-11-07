@@ -14,7 +14,8 @@ export interface Project {
   title: string;
   text: string;
   tags: string[];
-  link: { label: string; href: string };
+  link?: { label: string; href: string };
+  detail?: 'sana';
 }
 
 export interface Chapter {
@@ -42,15 +43,14 @@ const GITHUB = 'https://github.com/sanaullah980';
 export const profile = {
   name: 'Sanaullah',
   initial: 'S',
-  siteTitle: 'Sanaullah — Data Science, AI/ML & Business Intelligence',
+  siteTitle: 'Sanaullah — Data Science, AI/ML & Software',
   description:
-    'Sanaullah — BS Data Science student at PAF-IAST building AI-powered business software. Creator of Sana AI, a multilingual business analyzer, predictor and calculator.',
-  ogDescription: 'AI-powered business intelligence: analysis, forecasting and financial calculation in English, Urdu and Roman Urdu.',
+    'Sanaullah — BS Data Science student at PAF-IAST. I build AI-powered tools and business-management software.',
+  ogDescription: 'I build practical software and intelligent systems for real-world business problems.',
   photo: '/photo.jpg',
   github: GITHUB,
 
   nav: [
-    { href: '#sana-ai', label: 'Sana AI' },
     { href: '#story', label: 'Background' },
     { href: '#projects', label: 'Projects' },
     { href: '#skills', label: 'Skills' },
@@ -59,24 +59,24 @@ export const profile = {
   navCta: 'Get in touch',
 
   hero: {
-    eyebrow: 'DATA SCIENCE · AI/ML · BUSINESS SOFTWARE',
-    titleLine1: 'Intelligent software',
-    titleLine2: 'for real businesses.',
+    eyebrow: 'DATA SCIENCE · AI/ML · SOFTWARE',
+    titleLine1: 'Smart software,',
+    titleLine2: 'real-world impact.',
     lead:
-      'I’m Sanaullah — a BS Data Science student at PAF-IAST who designs AI-powered tools and business-management software. My flagship project, Sana AI, is a multilingual business intelligence suite that analyzes performance, predicts sales and calculates the numbers that matter.',
-    primaryCta: 'Explore Sana AI',
-    primaryHref: '#sana-ai',
+      'I’m Sanaullah — a BS Data Science student at PAF-IAST who designs AI-powered tools and business-management software, from multilingual language-model projects to shop-operations systems.',
+    primaryCta: 'View my work',
+    primaryHref: '#projects',
     secondaryCta: 'View GitHub',
     note: 'BS Data Science · PAF-IAST · Open to collaboration and opportunities',
     chipTop: 'AI / ML',
-    chipBottom: 'Sana AI in development',
+    chipBottom: 'Business software',
     index: '01 / PROFILE',
     scrollCue: 'SCROLL TO EXPLORE',
   },
 
   sana: {
     id: 'sana-ai',
-    eyebrow: 'FLAGSHIP PROJECT',
+    eyebrow: 'PROJECT DETAILS',
     title: 'Sana AI',
     titleAccent: 'Business Intelligence Suite.',
     status: 'IN ACTIVE DEVELOPMENT',
@@ -160,10 +160,10 @@ export const profile = {
       },
       {
         marker: '03',
-        label: 'AI / ML · SANA AI',
+        label: 'AI / ML · APPLIED AI',
         railLabel: 'Applied AI',
         title: 'Applied AI for business',
-        text: 'Developing Sana AI: a multilingual assistant built around a fine-tuned Qwen model (LoRA), designed to turn English, Urdu and Roman Urdu requests into analysis, forecasts and calculations.',
+        text: 'Fine-tuning lightweight language models (Qwen, LoRA) and building multilingual, business-focused assistants that understand English, Urdu and Roman Urdu.',
         tags: ['Python', 'NLP', 'Fine-tuning'],
       },
       {
@@ -177,21 +177,32 @@ export const profile = {
   },
 
   projects: {
-    eyebrow: 'MORE WORK · 04 PROJECTS',
+    eyebrow: 'SELECTED WORK · 05 PROJECTS',
     title: 'Software built',
     titleAccent: 'to be used.',
     intro:
-      'Web applications and engineering projects that sit alongside Sana AI. Each project is labelled with its current status; Rajput Fragrance is live.',
+      'Web applications, AI projects and engineering work. Each project is labelled with its current status; Rajput Fragrance is live.',
     allLink: 'See my GitHub profile',
     items: [
       {
         icon: 'business',
         status: 'progress',
+        featured: true,
         kind: 'BUSINESS MANAGEMENT · WEB / PWA',
         title: 'MyBusiness',
         text: 'A business-management system for shop operations, covering inventory, sales, customer and supplier ledgers, expenses, cashbook, reports, staff and backup. Under active development.',
         tags: ['JavaScript', 'Firebase', 'Firestore', 'PWA'],
         link: { label: 'Open project', href: 'https://mybusiness-green.vercel.app' },
+      },
+      {
+        icon: 'ai',
+        status: 'progress',
+        featured: true,
+        detail: 'sana',
+        kind: 'ARTIFICIAL INTELLIGENCE · BUSINESS INTELLIGENCE',
+        title: 'Sana AI',
+        text: 'A multilingual business assistant that routes English, Urdu and Roman Urdu commands to three engines — a business analyzer, a sales predictor and a financial calculator — using a fine-tuned Qwen model (LoRA).',
+        tags: ['Analyzer', 'Predictor', 'Calculator', 'Qwen · LoRA'],
       },
       {
         icon: 'fragrance',
@@ -256,15 +267,15 @@ export const profile = {
     eyebrow: 'PROFILE',
     titleLine1: 'Data, software,',
     titleLine2: 'and applied AI.',
-    text: 'I’m a Data Science student who works across software and AI. I build practical systems — from business-management workflows to the multilingual language-model pipeline behind Sana AI — with a focus on tools that help small and medium businesses understand and plan with their own numbers.',
+    text: 'I’m a Data Science student who works across software and AI. I build practical systems — from business-management workflows to multilingual language-model projects — with a focus on tools that help businesses understand and plan with their own numbers.',
     degree: 'BS Data Science',
     school: 'PAF-IAST · Pakistan · 3rd Semester',
   },
 
   contact: {
     eyebrow: 'LET’S WORK TOGETHER',
-    titleLine1: 'Interested in Sana AI',
-    titleLine2: 'or building something?',
+    titleLine1: 'Have an idea?',
+    titleLine2: 'Let’s build it together.',
     text: 'I’m glad to connect about AI/ML, data science, business software and collaboration.',
     cta: 'Connect on GitHub',
     extras: [] as string[],
