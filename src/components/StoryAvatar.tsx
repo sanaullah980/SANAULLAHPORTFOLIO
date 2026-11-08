@@ -1,8 +1,7 @@
 import type { MutableRefObject } from 'react';
 
 /**
- * Static figure for the journey section: the photo with its background removed (public/photo-cutout.png), standing
- * on the ground line. No 3D model, no movement.
+ * Compact portrait anchored to the journey ground line. No 3D model or movement.
  * (The props are kept so Journey does not need to change.)
  */
 export default function StoryAvatar({

@@ -33,6 +33,7 @@ Each featured project has a static, SEO-friendly case-study route:
 
 - `/projects/mybusiness`
 - `/projects/sana-ai`
+- `/projects/connect-paf`
 - `/projects/rajput-fragrance`
 - `/projects/cpp-inventory`
 

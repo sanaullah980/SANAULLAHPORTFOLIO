@@ -239,7 +239,7 @@ export const profile = {
         soon: true,
         kind: 'EDUCATION · DOCUMENT AUTOMATION',
         title: 'Connect PAF',
-        text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find. Not public yet.',
+        text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find.',
         tags: ['TypeScript', 'PDF.js', 'OCR', 'Firebase'],
       },
       {
@@ -254,7 +254,7 @@ export const profile = {
       },
     ] satisfies Project[],
     statusLabels: { progress: 'IN DEVELOPMENT', complete: 'LIVE PROJECT', soon: 'COMING SOON' },
-    soonNote: 'Available soon',
+    soonNote: 'Will be available soon',
   },
 
   skills: {

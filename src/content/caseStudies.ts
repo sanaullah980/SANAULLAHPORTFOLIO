@@ -55,7 +55,7 @@ export const caseStudies: CaseStudy[] = [
     note: 'Sana AI is an active research and development project. Forecasting and analysis capabilities are being developed and evaluated; they should not be interpreted as a deployed, production-validated service.'
   },
   {
-    slug: 'rajput-fragrance', number: '03', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
+    slug: 'rajput-fragrance', number: '04', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
     summary: 'A live fragrance-brand website that presents product collections and gives customers a direct path to place an order.',
     status: 'Live website',
     problem: 'A product-focused fragrance brand needs a clear online presence where visitors can browse products, understand the brand and move easily from discovery to ordering.',
@@ -72,7 +72,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: 'Visit live website', href: 'https://www.rajputfragrance.online/' }],
   },
   {
-    slug: 'cpp-inventory', number: '04', title: 'C++ Inventory System', category: 'C++ · PROGRAMMING FUNDAMENTALS',
+    slug: 'cpp-inventory', number: '05', title: 'C++ Inventory System', category: 'C++ · PROGRAMMING FUNDAMENTALS',
     summary: 'A console-based inventory-management project used to practice structured programming and apply core C++ problem-solving skills to a practical domain.',
     status: 'Learning project',
     problem: 'Inventory is a useful domain for practicing how programs represent records, accept user input and organize operations around stored information.',
