@@ -5,7 +5,7 @@
 
 export type ProjectStatus = 'progress' | 'complete' | 'soon';
 export type ProjectIconKey = 'business' | 'ai' | 'fragrance' | 'connect' | 'cpp';
-export type ProjectGroup = 'MyBusiness' | 'Connect PAF' | 'Management Systems' | 'Sana AI' | 'Games' | 'Other';
+export type ProjectGroup = 'MyBusiness' | 'Sana AI' | 'Connect PAF' | 'Rajput Fragrance' | 'Management Systems' | 'Games' | 'Other';
 
 export interface Project {
   icon: ProjectIconKey;
@@ -331,7 +331,7 @@ export const profile = {
         link: { label: 'Explore model on Hugging Face', href: 'https://huggingface.co/sanaullah980/mybusiness-qwen3-0.6b-merged' },
       },
 {
-        group: 'Other',
+        group: 'Rajput Fragrance',
         icon: 'fragrance',
         status: 'complete',
         slug: 'rajput-fragrance',

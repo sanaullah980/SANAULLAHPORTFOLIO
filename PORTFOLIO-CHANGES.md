@@ -34,3 +34,9 @@
 - Moved Password Analyzing System into the Management Systems group.
 - Added subtle, distinct accent colors, fine-line texture, refined borders and restrained decorative detailing to project group panels.
 - Kept the existing typography, card structure, animations, site theme and responsive behavior.
+
+
+## Featured projects and See all interaction
+- The initial Projects view now shows only MyBusiness, Sana AI, Connect PAF and Rajput Fragrance.
+- Added a See all projects button that expands to reveal Management Systems, Games and Other projects; it toggles back to the featured view.
+- Promoted Rajput Fragrance to its own featured project group.

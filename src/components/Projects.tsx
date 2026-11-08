@@ -8,7 +8,9 @@ import { ProjectPreview } from './ProjectPreview';
 export function Projects() {
   const { projects } = profile;
   const items: Project[] = projects.items;
-  const groupOrder: ProjectGroup[] = ['MyBusiness', 'Connect PAF', 'Management Systems', 'Sana AI', 'Games', 'Other'];
+  const featuredOrder: ProjectGroup[] = ['MyBusiness', 'Sana AI', 'Connect PAF', 'Rajput Fragrance'];
+  const remainingOrder: ProjectGroup[] = ['Management Systems', 'Games', 'Other'];
+  const groupOrder: ProjectGroup[] = [...featuredOrder, ...remainingOrder];
   const groupedItems = groupOrder
     .map((group) => ({
       group,
@@ -16,6 +18,7 @@ export function Projects() {
     }))
     .filter(({ items: groupItems }) => groupItems.length > 0);
   const [sanaOpen, setSanaOpen] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const closeSana = useCallback(() => setSanaOpen(false), []);
 
   return (
@@ -30,8 +33,10 @@ export function Projects() {
         <p className="section-intro">{projects.intro}</p>
       </div>
 
-      <div className="project-groups">
-        {groupedItems.map(({ group, items: groupItems }) => {
+      <div className="project-groups" id="all-project-groups">
+        {groupedItems
+          .filter(({ group }) => showAllProjects || featuredOrder.includes(group))
+          .map(({ group, items: groupItems }) => {
           const groupId = `project-group-${group.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`;
           return (
             <div
@@ -90,9 +95,16 @@ export function Projects() {
         })}
       </div>
 
-      <a className="all-projects-link" href={profile.github} target="_blank" rel="noreferrer">
-        {projects.allLink} <span aria-hidden="true">↗</span>
-      </a>
+      <button
+        type="button"
+        className="all-projects-link"
+        aria-expanded={showAllProjects}
+        aria-controls="all-project-groups"
+        onClick={() => setShowAllProjects((visible) => !visible)}
+      >
+        {showAllProjects ? 'Show featured projects' : 'See all projects'}
+        <span aria-hidden="true">{showAllProjects ? '↑' : '↓'}</span>
+      </button>
       {sanaOpen && <SanaDetails onClose={closeSana} />}
     </section>
   );
