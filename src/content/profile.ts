@@ -5,7 +5,7 @@
 
 export type ProjectStatus = 'progress' | 'complete' | 'soon';
 export type ProjectIconKey = 'business' | 'ai' | 'fragrance' | 'connect' | 'cpp';
-export type ProjectGroup = 'MyBusiness' | 'Connect PAF' | 'Management Systems' | 'Games & Others';
+export type ProjectGroup = 'MyBusiness' | 'Connect PAF' | 'Management Systems' | 'Sana AI' | 'Games' | 'Other';
 
 export interface Project {
   icon: ProjectIconKey;
@@ -285,6 +285,7 @@ export const profile = {
         title: 'Library Management System',
         text: 'A C++ library-management application for organizing book records and supporting common library operations such as managing entries, searching records and handling issue and return workflows.',
         tags: ['C++', 'Record Management', 'Library'],
+        link: { label: 'View source repository', href: 'https://github.com/sanaullah980/managementsystems' },
       },
 {
         group: 'Management Systems',
@@ -294,6 +295,7 @@ export const profile = {
         title: 'Hospital Management System',
         text: 'A C++ hospital-management project focused on organizing patient and hospital records and supporting structured day-to-day management workflows.',
         tags: ['C++', 'Record Management', 'Hospital'],
+        link: { label: 'View source repository', href: 'https://github.com/sanaullah980/managementsystems' },
       },
 {
         group: 'Management Systems',
@@ -304,10 +306,10 @@ export const profile = {
         title: 'Business Inventory and Management System',
         text: 'A C++ console-based business inventory system featuring password-protected logins, runtime data editing and a mini database for storing and managing business records.',
         tags: ['C++', 'Password Login', 'Runtime Data Editing', 'Mini Database'],
-        link: { label: 'More on GitHub', href: GITHUB },
+        link: { label: 'View source repository', href: 'https://github.com/sanaullah980/managementsystems' },
       },
 {
-        group: 'Games & Others',
+        group: 'Sana AI',
         icon: 'ai',
         status: 'progress',
         featured: true,
@@ -320,7 +322,7 @@ export const profile = {
         link: { label: 'Explore model on Hugging Face', href: 'https://huggingface.co/sanaullah980/mybusiness-qwen3-0.6b-merged' },
       },
 {
-        group: 'Games & Others',
+        group: 'Other',
         icon: 'fragrance',
         status: 'complete',
         slug: 'rajput-fragrance',
@@ -331,7 +333,7 @@ export const profile = {
         link: { label: 'Visit live website', href: 'https://www.rajputfragrance.online/' },
       },
 {
-        group: 'Games & Others',
+        group: 'Games',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · GAME DEVELOPMENT',
@@ -340,7 +342,7 @@ export const profile = {
         tags: ['C++', 'Game Logic', 'Console App'],
       },
 {
-        group: 'Games & Others',
+        group: 'Games',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · GAME DEVELOPMENT',
@@ -349,7 +351,7 @@ export const profile = {
         tags: ['C++', 'Game Logic', 'Console App'],
       },
 {
-        group: 'Games & Others',
+        group: 'Games',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · WORD GAME',
@@ -358,7 +360,7 @@ export const profile = {
         tags: ['C++', 'Strings', 'Game Logic'],
       },
 {
-        group: 'Games & Others',
+        group: 'Other',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · SECURITY UTILITY',
