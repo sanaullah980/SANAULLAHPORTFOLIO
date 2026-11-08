@@ -11,11 +11,20 @@ export function Skills() {
         </h2>
         <p className="section-intro">{skills.intro}</p>
       </div>
+      <ul className="skill-roles reveal" aria-label="Focus areas">
+        {skills.roles.map((r) => (
+          <li key={r}>{r}</li>
+        ))}
+      </ul>
       <div className="skills-grid">
         {skills.groups.map((g, i) => (
           <article key={g.title} className="skill-panel reveal">
+            <span className="skill-badge" aria-hidden="true">
+              {g.icon}
+            </span>
             <span className="skill-index">{String(i + 1).padStart(2, '0')}</span>
             <h3>{g.title}</h3>
+            <p className="skill-desc">{g.text}</p>
             <div className="skill-list">
               {g.items.map((item) => (
                 <span key={item}>{item}</span>

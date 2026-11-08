@@ -251,7 +251,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   .hero { grid-template-columns: minmax(0, 1fr) minmax(250px, .72fr); gap: 23px; }
   .hero h1 { font-size: clamp(42px, 7vw, 66px); }
   .chip-top { right: -8%; } .chip-bottom { left: -12%; }
-  .skills-grid { grid-template-columns: 1fr 1fr; } .skill-panel:last-child { grid-column: 1 / -1; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
   .project-card, .project-featured { grid-column: span 3; }
   .projects-heading { align-items: flex-start; flex-direction: column; gap: 0; } .projects-heading .section-intro { max-width: 550px; }
 }
@@ -470,4 +470,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .project-soon { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 18px; font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); cursor: default; user-select: none; }
 .project-soon::before { content: ''; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--accent); }
 .project-card.project-is-soon { border-style: dashed; }
-@media (min-width: 861px) { .project-card.project-is-soon { grid-column: span 6; min-height: 0; } }
+
+/* Skills section */
+.skill-roles { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; padding: 0; list-style: none; }
+.skill-roles li { padding: 9px 16px; border-radius: 999px; background: var(--accent); color: #fff; font: 500 13px var(--mono); letter-spacing: .02em; }
+.skill-roles li:nth-child(even) { background: transparent; color: var(--accent-ink); border: 1px solid var(--accent); }
+.skill-badge { display: inline-grid; place-items: center; min-width: 44px; height: 44px; padding: 0 10px; margin-bottom: 18px; border-radius: 14px; background: var(--accent); color: #fff; font: 600 13px var(--mono); }
+.skill-desc { margin: 8px 0 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+.skill-panel { min-height: 280px; }
+.skill-panel .skill-list { margin-top: 18px; }

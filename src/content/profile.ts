@@ -4,7 +4,7 @@
  */
 
 export type ProjectStatus = 'progress' | 'complete' | 'soon';
-export type ProjectIconKey = 'business' | 'ai' | 'connect';
+export type ProjectIconKey = 'business' | 'ai' | 'fragrance' | 'connect' | 'cpp';
 
 export interface Project {
   icon: ProjectIconKey;
@@ -79,7 +79,7 @@ export const profile = {
     scrollCue: 'SCROLL TO EXPLORE',
     stats: [
       { value: '3rd', label: 'Semester · BS Data Science' },
-      { value: '3', label: 'Projects · AI & software' },
+      { value: '5', label: 'Projects · AI & software' },
       { value: 'AI/ML', label: 'Main focus' },
     ],
   },
@@ -168,7 +168,7 @@ export const profile = {
         title: 'Business and web software',
         text: 'Designing and building practical applications — from a shop-operations management system to a university timetable tool — with JavaScript, TypeScript and Firebase.',
         tags: ['Web apps', 'JavaScript', 'Firebase'],
-        stats: [{ value: '3', label: 'Projects' }, { value: 'PWA', label: 'Installable web apps' }, { value: 'Firebase', label: 'Back-ends' }],
+        stats: [{ value: '5', label: 'Projects' }, { value: 'PWA', label: 'Installable web apps' }, { value: 'Firebase', label: 'Back-ends' }],
       },
       {
         marker: '03',
@@ -192,11 +192,11 @@ export const profile = {
   },
 
   projects: {
-    eyebrow: 'SELECTED WORK · 03 PROJECTS',
+    eyebrow: 'SELECTED WORK · 05 PROJECTS',
     title: 'Software built',
     titleAccent: 'to be used.',
     intro:
-      'Web applications, AI projects and engineering work. Each project is labelled with its current status.',
+      'Web applications, AI projects and engineering work. Each project is labelled with its current status; Rajput Fragrance is live.',
     allLink: 'See my GitHub profile',
     items: [
       {
@@ -220,6 +220,15 @@ export const profile = {
         tags: ['Analyzer', 'Predictor', 'Calculator', 'Qwen · LoRA'],
       },
       {
+        icon: 'fragrance',
+        status: 'complete',
+        kind: 'E-COMMERCE · WEBSITE',
+        title: 'Rajput Fragrance',
+        text: 'A fragrance-shopping website presenting product collections and brand information, with WhatsApp ordering and a cash-on-delivery order form.',
+        tags: ['Website', 'E-commerce', 'WhatsApp ordering'],
+        link: { label: 'Visit live website', href: 'https://www.rajputfragrance.online/' },
+      },
+      {
         icon: 'connect',
         status: 'soon',
         soon: true,
@@ -228,35 +237,71 @@ export const profile = {
         text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find.',
         tags: ['TypeScript', 'PDF.js', 'OCR', 'Firebase'],
       },
+      {
+        icon: 'cpp',
+        status: 'progress',
+        kind: 'PROGRAMMING FUNDAMENTALS · CONSOLE',
+        title: 'C++ Inventory System',
+        text: 'A command-line inventory-management project for practicing C++, program structure, and problem-solving. Additional implementation details will be added as the project develops.',
+        tags: ['C++', 'Console app', 'Programming fundamentals'],
+        link: { label: 'More on GitHub', href: GITHUB },
+      },
     ] satisfies Project[],
     statusLabels: { progress: 'IN PROGRESS', complete: 'COMPLETED', soon: 'COMING SOON' },
     soonNote: 'Available soon',
   },
 
   skills: {
-    eyebrow: 'TECHNICAL STACK',
-    title: 'Tools and',
-    titleAccent: 'disciplines.',
-    intro: 'Core technologies across software engineering, data science and applied AI.',
+    eyebrow: 'SKILLS & EXPERTISE',
+    title: 'What I',
+    titleAccent: 'work with.',
+    intro:
+      'The technologies and disciplines I use to build software and intelligent systems — grouped by area, with no inflated ratings.',
+    roles: [
+      'Machine Learning',
+      'NLP',
+      'AI Agent Development',
+      'Model Training',
+      'Web Development',
+      'Android Development',
+      'Firebase',
+    ],
     groups: [
-      { title: 'Programming', items: ['C++', 'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS'] },
       {
-        title: 'AI & data',
-        items: [
-          'Machine learning',
-          'NLP',
-          'LLMs',
-          'Fine-tuning',
-          'Forecasting',
-          'Business analytics',
-          'Pandas',
-          'NumPy',
-          'Scikit-learn',
-        ],
+        title: 'Machine Learning & AI',
+        icon: 'ML',
+        text: 'Training, fine-tuning and evaluating models for practical use.',
+        items: ['Machine Learning', 'Model Training & Fine-Tuning', 'LoRA', 'Large Language Models (LLMs)', 'Scikit-learn', 'PyTorch', 'Data Analysis'],
       },
       {
-        title: 'Tools & platforms',
-        items: ['Git / GitHub', 'Firebase', 'Firestore', 'Hugging Face', 'Google Colab', 'PyTorch', 'Transformers'],
+        title: 'NLP & AI Agents',
+        icon: 'AI',
+        text: 'Language-aware assistants that understand commands and act on them.',
+        items: ['Natural Language Processing (NLP)', 'AI Agent Development', 'Multilingual NLP (EN · UR · Roman Urdu)', 'Prompt Engineering', 'Hugging Face Transformers'],
+      },
+      {
+        title: 'Web Development',
+        icon: 'WEB',
+        text: 'Responsive, installable web applications and business tools.',
+        items: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Progressive Web Apps (PWA)', 'Responsive Design', 'Vercel Deployment'],
+      },
+      {
+        title: 'Android Development',
+        icon: 'APP',
+        text: 'Mobile experiences for everyday business and student needs.',
+        items: ['Android App Development', 'Mobile UI Design', 'Firebase Integration', 'App Publishing Basics'],
+      },
+      {
+        title: 'Firebase & Databases',
+        icon: 'DB',
+        text: 'Back-ends, authentication and data storage for live apps.',
+        items: ['Firebase Authentication', 'Cloud Firestore', 'Realtime Database', 'Firebase Hosting', 'Database Design'],
+      },
+      {
+        title: 'Languages & Tools',
+        icon: '</>',
+        text: 'Core programming foundations and everyday tooling.',
+        items: ['Python', 'C++', 'JavaScript', 'Data Structures & Algorithms', 'Pandas', 'NumPy', 'Git & GitHub', 'Google Colab'],
       },
     ],
   },

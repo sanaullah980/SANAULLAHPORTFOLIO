@@ -19,10 +19,22 @@ function ProjectIcon({ kind }: { kind: ProjectIconKey }) {
           <span className="ai-orb">✳</span>
         </div>
       );
+    case 'fragrance':
+      return (
+        <div className="project-icon icon-fragrance" aria-hidden="true">
+          ✦
+        </div>
+      );
     case 'connect':
       return (
         <div className="project-icon icon-connect" aria-hidden="true">
           ↗
+        </div>
+      );
+    case 'cpp':
+      return (
+        <div className="project-icon icon-cpp" aria-hidden="true">
+          C<span>++</span>
         </div>
       );
   }

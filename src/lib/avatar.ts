@@ -51,7 +51,7 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
 
   // Neither mesh's own skeleton has all the bones we need, so build a small skeleton of our own.
   // The model is in its bind (T) pose right now, so inverse bind matrices are just inverse world matrices.
-  const used = ['Hips', 'Spine', 'Spine2', 'Neck', 'LeftArm', 'LeftForeArm', 'RightArm', 'RightForeArm', 'LeftUpLeg', 'RightUpLeg'];
+  const used = ['Hips', 'Spine', 'Spine2', 'Neck', 'Head', 'LeftArm', 'LeftForeArm', 'RightArm', 'RightForeArm', 'LeftUpLeg', 'RightUpLeg'];
   const skeleton = new THREE.Skeleton(
     used.map((n) => bones[n]),
     used.map((n) => bones[n].matrixWorld.clone().invert()),
@@ -140,7 +140,7 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
 
   const NAVY = srgb(29, 37, 59);
   const VEST = srgb(27, 34, 54);
-  const LAPEL = srgb(45, 55, 84);
+  const LAPEL = srgb(39, 48, 74);
   const SHIRT = srgb(238, 239, 243);
   const TIE = srgb(22, 24, 32);
 
@@ -152,7 +152,7 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
   /* ---------- 1. front panels (vest, shirt, lapels, tie), fitted to the torso ---------- */
   const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
   const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
-  const ow = (y: number) => (y >= 1.04 ? 0.108 * clamp01((y - 1.04) / 0.46) : 0.0); // jacket opening half-width
+  const ow = (y: number) => (y >= 1.04 ? 0.086 * clamp01((y - 1.04) / 0.46) : 0.0); // jacket opening half-width
 
   /** A panel made of horizontal rows: xl(y), xr(y) give the left/right edge; z is fitted to the surface. */
   function rowsPanel(yTop: number, yBot: number, rows: number, cols: number, xl: (y: number) => number, xr: (y: number) => number, off: number, material: THREE.Material, w?: (p: THREE.Vector3) => [number, number][]) {
@@ -180,15 +180,15 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
   // waistcoat inside the jacket opening
   rowsPanel(1.4, 1.045, 14, 6, (y) => -ow(y), (y) => ow(y), 0.004, mat(VEST, 0.8), torsoW);
   // white shirt in the V above the waistcoat
-  const shirtHalf = (y: number) => Math.min(ow(y), 0.075, 0.0836 * clamp01((y - 1.32) / 0.08));
+  const shirtHalf = (y: number) => Math.min(ow(y), 0.062, 0.07 * clamp01((y - 1.32) / 0.08));
   rowsPanel(1.505, 1.32, 12, 6, (y) => -shirtHalf(y), (y) => shirtHalf(y), 0.007, mat(SHIRT, 0.7), torsoW);
   // tie: knot + blade, ending where the waistcoat takes over
   const tieHalf = (y: number) => (y > 1.455 ? 0.015 + 0.004 * clamp01((1.505 - y) / 0.05) : 0.012 + 0.017 * Math.sin(clamp01((1.455 - y) / 0.13) * Math.PI * 0.55));
   rowsPanel(1.51, 1.33, 14, 2, (y) => -tieHalf(y), (y) => tieHalf(y), 0.012, mat(TIE, 0.3, 0.25), torsoW);
   // lapels: a band along each edge of the V (left = +x, right = -x)
   for (const s of [1, -1]) {
-    const lw = (y: number) => 0.014 + 0.05 * Math.pow(Math.sin(clamp01((y - 1.04) / 0.46) * Math.PI), 0.8);
-    rowsPanel(1.5, 1.045, 16, 3, (y) => (s > 0 ? ow(y) : -ow(y) - lw(y)), (y) => (s > 0 ? ow(y) + lw(y) : -ow(y)), 0.009, mat(LAPEL, 0.45), torsoW);
+    const lw = (y: number) => 0.012 + 0.03 * Math.pow(Math.sin(clamp01((y - 1.04) / 0.46) * Math.PI), 0.8);
+    rowsPanel(1.5, 1.045, 16, 3, (y) => (s > 0 ? ow(y) : -ow(y) - lw(y)), (y) => (s > 0 ? ow(y) + lw(y) : -ow(y)), 0.009, cloth(LAPEL), torsoW);
   }
   // pocket square on the wearer's left breast
   {
@@ -332,8 +332,8 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
       else if (h && h.object === staticOutfit && h.uv && h.uv.y <= 0.58) break;
     }
     const top = hem + 0.03;
-    const bottom = hem - 0.09;
-    const levels = 6;
+    const bottom = hem - 0.12;
+    const levels = 9;
     const segs = 48;
     const cz = 0.0;
     // one contour per angle: the widest the body gets anywhere along the skirt's height
@@ -357,9 +357,12 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
     const pos: number[] = [];
     const ind: number[] = [];
     for (let l = 0; l <= levels; l++) {
-      const y = lerp(top, bottom, l / levels);
       for (let i = 0; i < segs; i++) {
         const a = (i / segs) * Math.PI * 2;
+        // the hem curves up toward the centre front, like a real jacket
+        const front = Math.atan2(Math.sin(a), Math.cos(a));
+        const lift = 0.045 * Math.exp(-Math.pow(front / 0.5, 2));
+        const y = lerp(top, bottom + lift, l / levels);
         const r = smooth[i] + 0.006 + 0.004 * clamp01(l / levels);
         pos.push(Math.sin(a) * r, y, cz + Math.cos(a) * r);
       }
@@ -377,6 +380,48 @@ export function dressAvatar(model: THREE.Object3D, textures: { map: THREE.Textur
       const base = 0.7 + 0.3 * (1 - t);
       return [[idxHips, (1 - k) * base], [idxSpine, (1 - k) * (1 - base)], [iL, k * left], [iR, k * (1 - left)]];
     });
+  }
+
+  /* ---------- 5. sunglasses (as in the photo), fixed to the head ---------- */
+  try {
+    const idxHead = idx('Head');
+    const eyeL = (bones.LeftEye || bones.LeftEyeball)?.getWorldPosition(new V3());
+    const eyeR = (bones.RightEye || bones.RightEyeball)?.getWorldPosition(new V3());
+    if (eyeL && eyeR) {
+      const ey = (eyeL.y + eyeR.y) / 2;
+      const ex = Math.abs(eyeL.x - eyeR.x) / 2;
+      const faceZ = (x: number) => (hit(new V3(x, ey, 1.0), new V3(0, 0, -1))?.point.z ?? eyeL.z + 0.03);
+      const lens = new THREE.MeshStandardMaterial({ color: srgb(24, 40, 86), roughness: 0.12, metalness: 0.55, side: THREE.DoubleSide });
+      const frame = new THREE.MeshStandardMaterial({ color: srgb(18, 18, 22), roughness: 0.4, metalness: 0.3, side: THREE.DoubleSide });
+      const addGeo = (g: THREE.BufferGeometry, material: THREE.Material) => {
+        const p = g.attributes.position;
+        const out: number[] = [];
+        for (let i = 0; i < p.count; i++) out.push(p.getX(i), p.getY(i), p.getZ(i));
+        const index = g.index ? Array.from(g.index.array) : Array.from({ length: p.count }, (_, i) => i);
+        skinned(out, index, material, () => [[idxHead, 1]]);
+      };
+      for (const s of [1, -1]) {
+        const cx = s * ex;
+        const z = faceZ(cx) + 0.008;
+        const l = new THREE.CircleGeometry(0.0205, 24);
+        l.scale(1, 0.8, 1);
+        l.translate(cx, ey + 0.002, z + 0.001);
+        addGeo(l, lens);
+        const f = new THREE.RingGeometry(0.0205, 0.0235, 24);
+        f.scale(1, 0.78, 1);
+        f.translate(cx, ey + 0.002, z);
+        addGeo(f, frame);
+        // temple arm running back along the side of the head
+        const arm = new THREE.BoxGeometry(0.004, 0.004, 0.11);
+        arm.translate(s * (ex + 0.024), ey + 0.006, z - 0.055);
+        addGeo(arm, frame);
+      }
+      const bridge = new THREE.BoxGeometry(ex * 2 - 0.04, 0.004, 0.004);
+      bridge.translate(0, ey + 0.01, faceZ(0) + 0.018);
+      addGeo(bridge, frame);
+    }
+  } catch (e) {
+    /* glasses are decoration only */
   }
 
   const headTop = bones['HeadTop_End'].getWorldPosition(new V3()).y;
@@ -457,6 +502,12 @@ export function createPoser(model: THREE.Object3D, bones: Record<string, THREE.B
       const psi = th + bend;
       let upper = armDir;
       let fore = new V3(s * 0.08, -Math.cos(psi), Math.sin(psi));
+      // standing: hands rest in the trouser pockets, as in the photo
+      const pk = 1 - A;
+      if (pk > 0.001) {
+        upper = mix(upper, new V3(s * 0.2, -0.95, -0.16), pk);
+        fore = mix(fore, new V3(-s * 0.3, -0.82, 0.46), pk);
+      }
       // chapter gestures use the character's right arm (-X) while standing
       const g = gesture >= 0 && s < 0 ? gAmount * (1 - A) : 0;
       if (g > 0.001) {
