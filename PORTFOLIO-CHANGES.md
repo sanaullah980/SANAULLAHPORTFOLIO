@@ -40,3 +40,10 @@
 - The initial Projects view now shows only MyBusiness, Sana AI, Connect PAF and Rajput Fragrance.
 - Added a See all projects button that expands to reveal Management Systems, Games and Other projects; it toggles back to the featured view.
 - Promoted Rajput Fragrance to its own featured project group.
+
+
+## Featured-project view correction
+- The initial view now renders exactly four individual project cards: MyBusiness, Sana AI, Connect PAF and Rajput Fragrance.
+- Integrated MyBusiness modules and Connect PAF features no longer appear as separate cards in the initial view.
+- All remaining projects are hidden until the user selects See all projects; expanded projects are grouped by category.
+- Sana AI remains a full-width standalone feature card, with no neighboring project card.
