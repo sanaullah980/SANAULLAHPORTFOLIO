@@ -1,29 +1,18 @@
-# Portfolio update notes
+# Portfolio content updates
 
-## Visual direction preserved
-- Kept the existing warm-paper background, orange accent, typography, header, portrait, ambient treatment, animations and homepage section styling.
-- Kept the existing Vercel and Next.js configuration.
-- Kept the existing Sana AI browser-based engine previews and modal.
+## Scope preserved
+- Kept the existing theme, colors, textures, typography, layout, animations, visual style, components and application architecture unchanged.
+- Kept existing project preview components, page structure, navigation, Next.js and Vercel configuration.
 
-## Improvements made
-- Sharpened the homepage positioning toward software development and applied AI/ML.
-- Added five distinct CSS-built project preview panels. They are labelled in code and README as illustrative previews, not screenshots of deployed products.
-- Added a dedicated case-study route for each project, with problem, approach, capabilities, architecture flow, engineering notes, stack and external links.
-- Updated MyBusiness to reflect web/PWA and Android scope.
-- Changed Connect PAF from an unavailable/coming-soon card to an in-development project and linked its repository.
-- Added project links to the relevant repositories, live site or Hugging Face model where known.
-- Added page-specific metadata, Open Graph/Twitter metadata, Person structured data, sitemap and robots routes.
-- Added a branded 404 page.
-- Made the shared navigation work correctly from project detail pages.
-- Updated README with setup and content-editing instructions.
-
-## Important accuracy notes
-- The project preview panels are conceptual CSS illustrations. Replace them with real application screenshots when available.
-- Sana AI is described as active model development/experimentation, not a production-validated AI service.
-- Connect PAF is described as in development; OCR and extraction capabilities are not claimed as fully deployed.
-- C++ Inventory details are intentionally conservative because no implementation repository was supplied for inspection.
+## Content updated
+- Updated the introduction and profile to describe Sanaullah as an entrepreneur and software developer who leads an organization.
+- Added Entrepreneurship, Leadership and Organization Management to the skills section.
+- Updated MyBusiness to describe its real-market implementation and use, and grouped its related Text Extraction Agent, GrowBusiness Work Assistant and Employee Management System cards together.
+- Added the Connect PAF description for students, teachers and administrators, plus its PDF Extraction Agent, role-based permissions and CampusChat messaging feature.
+- Renamed the C++ project to Business Inventory and Management System and added password-protected login, runtime data editing and mini-database details.
+- Added Library Management System, Hospital Management System, Tic-Tac-Toe, Snake, Word Guessing and Password Analyzing projects.
+- Updated the MyBusiness and C++ case-study copy and adjusted project numbering to match the new project sequence.
 
 ## Validation
-- All 23 TypeScript/TSX files passed a TypeScript transpilation syntax check.
-- A full Next.js build/typecheck could not be run in this environment because npm registry access failed (DNS/network error while downloading Next.js dependencies).
-- Run `npm install`, `npm run typecheck`, and `npm run build` locally before deploying.
+- Source content and project ordering were reviewed.
+- A full Next.js typecheck/build could not be completed because npm dependency installation timed out in this environment. Run `npm install`, `npm run typecheck` and `npm run build` locally before deployment.

@@ -18,11 +18,11 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'mybusiness', number: '01', title: 'MyBusiness', category: 'BUSINESS MANAGEMENT · WEB / ANDROID',
-    summary: 'A shop-management platform that brings everyday operations — stock, sales, purchasing, customer accounts and financial records — into one practical workflow.',
-    status: 'Active development',
-    problem: 'Small shops often manage inventory, customer credit, supplier balances and daily cash records across separate notebooks or disconnected tools. That makes it harder to keep an accurate picture of the business.',
-    approach: 'Build a connected business-management application around the workflows a shop owner uses every day. Keep the interface mobile-first and design data handling with offline use and safe synchronization in mind.',
-    capabilities: ['Inventory and stock management', 'Retail and wholesale sales workflows', 'Purchases and supplier records', 'Customer Khata and transaction history', 'Expenses, cashbook and business reports', 'Staff, attendance and reminders', 'Backup and restore workflows', 'Web/PWA experience with an Android app direction'],
+    summary: 'A business-management platform used in the real market to help people manage inventory, sales, purchases, customer accounts, staff and financial records in one workflow.',
+    status: 'Implemented · Real-world use',
+    problem: 'Small shops often manage inventory, customer credit, supplier balances, staff and daily cash records across separate notebooks or disconnected tools. That makes it harder to keep an accurate picture of the business.',
+    approach: 'Build a connected business-management application around the workflows a shop owner uses every day. The application has been implemented in the real market and is used by people to manage their businesses. Keep the interface mobile-first and design data handling with offline use and safe synchronization in mind.',
+    capabilities: ['Inventory and stock management', 'Retail and wholesale sales workflows', 'Purchases and supplier records', 'Customer Khata and transaction history', 'Expenses, cashbook and business reports', 'Staff and employee management, attendance and reminders', 'Backup and restore workflows', 'Integrated text extraction agent and GrowBusiness Work Assistant', 'Web/PWA experience with an Android app direction'],
     architecture: [
       { label: 'Web / Android UI', detail: 'Mobile-first screens for daily shop operations' },
       { label: 'Application logic', detail: 'Sales, stock, purchase and ledger workflows' },
@@ -33,10 +33,10 @@ export const caseStudies: CaseStudy[] = [
     engineering: ['Keep existing business records safe when application code changes.', 'Treat offline operation as a core workflow rather than an afterthought.', 'Keep financial calculations and ledger effects consistent across sales and payments.', 'Separate business workflows into focused modules to make maintenance easier.'],
     stack: ['JavaScript', 'Firebase Authentication', 'Cloud Firestore', 'PWA', 'Android'],
     links: [{ label: 'Source code', href: 'https://github.com/sanaullah980/mybusiness' }, { label: 'Open web application', href: 'https://mybusiness-green.vercel.app' }],
-    note: 'The project is under active development. The architecture shown here describes the intended application flow; individual features and platform availability may evolve.'
+    note: 'MyBusiness is implemented and used in real business settings. Its feature set continues to evolve as workflows and user needs develop.'
   },
   {
-    slug: 'sana-ai', number: '02', title: 'Sana AI', category: 'APPLIED AI · MULTILINGUAL BUSINESS ASSISTANT',
+    slug: 'sana-ai', number: '05', title: 'Sana AI', category: 'APPLIED AI · MULTILINGUAL BUSINESS ASSISTANT',
     summary: 'A domain-focused AI assistant exploring how a compact language model can understand business instructions in English, Urdu and Roman Urdu and connect them to useful business operations.',
     status: 'Model development and experimentation',
     problem: 'Many shop owners are more comfortable expressing business requests in everyday language than navigating complex menus or writing structured queries. A business assistant needs to understand intent and return predictable, useful outputs.',
@@ -55,7 +55,7 @@ export const caseStudies: CaseStudy[] = [
     note: 'Sana AI is an active research and development project. Forecasting and analysis capabilities are being developed and evaluated; they should not be interpreted as a deployed, production-validated service.'
   },
   {
-    slug: 'rajput-fragrance', number: '04', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
+    slug: 'rajput-fragrance', number: '06', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
     summary: 'A live fragrance-brand website that presents product collections and gives customers a direct path to place an order.',
     status: 'Live website',
     problem: 'A product-focused fragrance brand needs a clear online presence where visitors can browse products, understand the brand and move easily from discovery to ordering.',
@@ -72,21 +72,21 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: 'Visit live website', href: 'https://www.rajputfragrance.online/' }],
   },
   {
-    slug: 'cpp-inventory', number: '05', title: 'C++ Inventory System', category: 'C++ · PROGRAMMING FUNDAMENTALS',
-    summary: 'A console-based inventory-management project used to practice structured programming and apply core C++ problem-solving skills to a practical domain.',
-    status: 'Learning project',
-    problem: 'Inventory is a useful domain for practicing how programs represent records, accept user input and organize operations around stored information.',
-    approach: 'Use a console application to explore program structure and inventory-related logic while strengthening C++ fundamentals.',
-    capabilities: ['Console-based interaction', 'Inventory-management problem domain', 'C++ programming practice', 'Structured problem solving'],
+    slug: 'cpp-inventory', number: '12', title: 'Business Inventory and Management System', category: 'C++ · BUSINESS INVENTORY & MANAGEMENT',
+    summary: 'A C++ console-based business inventory and management system featuring password-protected logins, runtime data editing and a mini database for business records.',
+    status: 'C++ project',
+    problem: 'A small business inventory workflow needs a way to protect access, maintain records and allow updates while the program is running.',
+    approach: 'Use a C++ console application with password-protected logins, runtime data editing and a lightweight mini-database approach to organize and update inventory records.',
+    capabilities: ['Password-protected user login', 'Runtime data editing', 'Mini database for business records', 'Console-based inventory management', 'Structured C++ problem solving'],
     architecture: [
       { label: 'Console interface', detail: 'User input and displayed results' },
       { label: 'Program logic', detail: 'Inventory-related operations' },
-      { label: 'Data representation', detail: 'C++ structures and records as implemented' },
+      { label: 'Data representation', detail: 'Mini database and editable business records' },
     ],
-    engineering: ['Practice clear control flow and program organization.', 'Apply core C++ syntax and problem-solving techniques.', 'Build a foundation for more advanced data structures and application design.'],
+    engineering: ['Protect the application flow with password-based login.', 'Allow users to edit stored information while the program is running.', 'Organize business records through a lightweight mini-database structure.', 'Apply C++ control flow, data handling and problem-solving techniques.'],
     stack: ['C++', 'Console application'],
     links: [{ label: 'GitHub profile', href: 'https://github.com/sanaullah980' }],
-    note: 'This is presented as a programming-fundamentals project. Detailed implementation claims are intentionally limited until the repository and feature set are documented.'
+    note: 'The project demonstrates C++ programming through a practical business inventory and record-management workflow.'
   },
 ];
 
