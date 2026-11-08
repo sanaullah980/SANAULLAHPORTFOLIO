@@ -23,3 +23,14 @@
 - Added Expense Tracker as a MyBusiness-integrated finance module.
 - Updated portfolio project totals from 16 to 17.
 - Added responsive group headings using the existing design tokens and typography; no theme, texture, animation, or overall site styling was changed.
+
+
+## AI tools and MyBusiness offline runtime update
+- Added Retrieval-Augmented Generation (RAG), Ollama, GGUF model runtime and Microsoft Power BI to the technical toolkit.
+- Added an Ollama Local AI Integration project under MyBusiness, describing local execution of Sana AI's GGUF model for offline inference.
+
+
+## Project section refinement
+- Moved Password Analyzing System into the Management Systems group.
+- Added subtle, distinct accent colors, fine-line texture, refined borders and restrained decorative detailing to project group panels.
+- Kept the existing typography, card structure, animations, site theme and responsive behavior.

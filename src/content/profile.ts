@@ -232,6 +232,15 @@ export const profile = {
         text: 'An in-app work assistant for MyBusiness that helps users complete common tasks faster, understand requests and move through business actions with less manual effort.',
         tags: ['AI Assistant', 'Workflow Support', 'Business Automation', 'MyBusiness'],
       },
+      {
+        group: 'MyBusiness',
+        icon: 'ai',
+        status: 'progress',
+        kind: 'MYBUSINESS · OFFLINE AI RUNTIME',
+        title: 'Ollama Local AI Integration',
+        text: 'An offline AI runtime integrated into MyBusiness using Ollama to run my own Sana AI GGUF model file locally. This brings model inference onto the user’s device, helping make AI assistance available without depending on a cloud model connection.',
+        tags: ['Ollama', 'Sana AI GGUF', 'Local Inference', 'Offline AI', 'MyBusiness'],
+      },
 {
         group: 'MyBusiness',
         icon: 'business',
@@ -360,7 +369,7 @@ export const profile = {
         tags: ['C++', 'Strings', 'Game Logic'],
       },
 {
-        group: 'Other',
+        group: 'Management Systems',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · SECURITY UTILITY',
@@ -427,6 +436,12 @@ export const profile = {
         icon: 'LEAD',
         text: 'Leading an organization, coordinating people and turning ideas into practical products.',
         items: ['Entrepreneurship', 'Leadership', 'Organization Management', 'Project Coordination', 'Product Thinking'],
+      },
+      {
+        title: 'AI Infrastructure & Analytics',
+        icon: 'AI+BI',
+        text: 'Tools for local model execution, knowledge retrieval and data visualization.',
+        items: ['Retrieval-Augmented Generation (RAG)', 'Ollama', 'GGUF Model Runtime', 'Microsoft Power BI'],
       },
       {
         title: 'Languages & Tools',

@@ -126,7 +126,50 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .projects-heading .section-intro { max-width: 380px; margin-bottom: 6px; }
 .project-groups { display: grid; gap: clamp(30px, 4.5vw, 54px); }
 .project-group { min-width: 0; }
-.project-group-panel { padding: clamp(22px, 3.2vw, 38px); border: 1px solid var(--glass-border); border-radius: 28px; background: rgba(251, 250, 246, .24); box-shadow: inset 0 1px 0 rgba(255,255,255,.55); }
+.project-group-panel {
+  --group-rgb: 255, 79, 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(22px, 3.2vw, 38px);
+  border: 1px solid rgba(var(--group-rgb), .25);
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(var(--group-rgb), .085), transparent 48%),
+    repeating-linear-gradient(135deg, rgba(20, 20, 19, .018) 0 1px, transparent 1px 11px),
+    rgba(251, 250, 246, .48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 16px 38px -30px rgba(20,20,19,.28);
+}
+.project-group-panel::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 7%;
+  right: 7%;
+  height: 2px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, transparent, rgba(var(--group-rgb), .78), transparent);
+}
+.project-group-panel::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 210px;
+  height: 210px;
+  top: -135px;
+  right: -85px;
+  border: 1px solid rgba(var(--group-rgb), .14);
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px rgba(var(--group-rgb), .025), 0 0 0 38px rgba(var(--group-rgb), .018);
+  pointer-events: none;
+}
+.project-group-mybusiness .project-group-panel { --group-rgb: 255, 79, 0; }
+.project-group-connect-paf .project-group-panel { --group-rgb: 32, 132, 153; }
+.project-group-management-systems .project-group-panel { --group-rgb: 93, 105, 178; }
+.project-group-games .project-group-panel { --group-rgb: 65, 133, 102; }
+.project-group-other .project-group-panel { --group-rgb: 151, 112, 77; }
+.project-group-sana-ai .project-group-panel { --group-rgb: 255, 79, 0; border-color: rgba(255, 79, 0, .38); }
 .project-group-heading { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 0 0 28px; text-align: center; }
 .project-group-heading-copy { display: flex; flex-direction: column; align-items: center; gap: 7px; }
 .project-group-rule { width: clamp(24px, 4vw, 48px); height: 1px; flex: 0 0 clamp(24px, 4vw, 48px); background: var(--accent); }
