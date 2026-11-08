@@ -34,7 +34,7 @@ export function Projects({ projects }: { projects: typeof import('@/content/proj
   const renderProjectCard = ({ project: p, index: i }: IndexedProject) => (
     <article
       key={p.title}
-      className={`project-card reveal${p.featured ? ' project-featured' : ''}${p.title === 'Sana AI' ? ' project-sana-featured' : ''}${p.soon ? ' project-is-soon' : ''}${p.detail ? ' project-highlight' : ''}`}
+      className={`project-card reveal is-visible${p.featured ? ' project-featured' : ''}${p.title === 'Sana AI' ? ' project-sana-featured' : ''}${p.soon ? ' project-is-soon' : ''}${p.detail ? ' project-highlight' : ''}`}
     >
       <div className="project-topline">
         <span className="project-number">{String(i + 1).padStart(2, '0')}</span>

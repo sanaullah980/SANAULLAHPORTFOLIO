@@ -2,6 +2,7 @@
 
 import { timingSafeEqual } from 'node:crypto';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import {
   createProjectAccessToken,
   PROJECTS_COOKIE_NAME,
@@ -26,5 +27,5 @@ export async function unlockProjects(_previous: { error: string }, formData: For
     path: '/',
     maxAge: PROJECTS_SESSION_SECONDS,
   });
-  return { error: '' };
+  redirect('/#projects');
 }
