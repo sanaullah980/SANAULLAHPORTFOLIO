@@ -125,6 +125,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .projects-heading { max-width: 100%; display: flex; align-items: end; justify-content: space-between; gap: 30px; }
 .projects-heading .section-intro { max-width: 380px; margin-bottom: 6px; }
 .project-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.project-groups { display: grid; gap: clamp(42px, 6vw, 72px); }
+.project-group { min-width: 0; }
+.project-group-heading { display: flex; align-items: center; gap: 13px; margin: 0 0 20px; }
+.project-group-rule { width: 28px; height: 1px; flex: 0 0 28px; background: var(--accent); }
+.project-group-heading h3 { margin: 0; color: var(--text); font-size: clamp(20px, 2.3vw, 27px); line-height: 1.2; font-weight: 650; letter-spacing: -.035em; }
+.project-group-count { margin-left: auto; color: var(--muted); font: 10px var(--mono); letter-spacing: .08em; white-space: nowrap; }
 .project-card { position: relative; grid-column: span 2; min-height: 352px; display: flex; flex-direction: column; align-items: flex-start; overflow: hidden; padding: 25px clamp(22px, 3vw, 32px) 24px; border-radius: 24px; transition: border-color .16s ease, background-color .16s ease; }
 .project-featured { grid-column: span 3; min-height: 385px; }
 .project-card:hover { background: var(--glass-bg-strong); border-color: var(--text); }
@@ -276,6 +282,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
   .timeline-marker { width: 37px; height: 37px; font-size: 10px; }
   .timeline-card { padding: 19px 17px 20px; border-radius: 20px; } .timeline-card h3 { font-size: 19px; } .timeline-card > p:not(.timeline-label) { font-size: 14px; }
   .project-grid { grid-template-columns: 1fr; gap: 12px; }
+  .project-group-heading { gap: 9px; margin-bottom: 14px; } .project-group-rule { width: 19px; flex-basis: 19px; } .project-group-count { font-size: 9px; }
   .project-card, .project-featured { grid-column: 1; min-height: 0; padding: 21px; border-radius: 20px; }
   .project-card .project-link { padding-top: 18px; } .project-icon { margin-top: 19px; }
   .skills-grid { grid-template-columns: 1fr; } .skill-panel, .skill-panel:last-child { grid-column: 1; min-height: 0; padding: 22px; border-radius: 20px; } .skill-list { margin-top: 17px; }

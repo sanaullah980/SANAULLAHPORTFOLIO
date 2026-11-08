@@ -5,9 +5,11 @@
 
 export type ProjectStatus = 'progress' | 'complete' | 'soon';
 export type ProjectIconKey = 'business' | 'ai' | 'fragrance' | 'connect' | 'cpp';
+export type ProjectGroup = 'MyBusiness' | 'Connect PAF' | 'Management Systems' | 'Games & Others';
 
 export interface Project {
   icon: ProjectIconKey;
+  group: ProjectGroup;
   status: ProjectStatus;
   featured?: boolean;
   slug?: string;
@@ -80,7 +82,7 @@ export const profile = {
     scrollCue: 'SCROLL TO EXPLORE',
     stats: [
       { value: '3rd', label: 'Semester · BS Data Science' },
-      { value: '16', label: 'Projects · AI & software' },
+      { value: '17', label: 'Projects · AI & software' },
       { value: 'AI/ML', label: 'Main focus' },
     ],
   },
@@ -169,7 +171,7 @@ export const profile = {
         title: 'Business and web software',
         text: 'Designing and building practical applications — from a shop-operations management system to a university timetable tool — with JavaScript, TypeScript and Firebase.',
         tags: ['Web apps', 'JavaScript', 'Firebase'],
-        stats: [{ value: '16', label: 'Projects' }, { value: 'PWA', label: 'Installable web app' }, { value: 'Firebase', label: 'Back-ends' }],
+        stats: [{ value: '17', label: 'Projects' }, { value: 'PWA', label: 'Installable web app' }, { value: 'Firebase', label: 'Back-ends' }],
       },
       {
         marker: '03',
@@ -200,7 +202,8 @@ export const profile = {
       'Business platforms, AI agents, education tools and software projects built to solve practical problems. MyBusiness is being used in the market, with connected tools supporting its everyday workflows.',
     allLink: 'See my GitHub profile',
     items: [
-      {
+{
+        group: 'MyBusiness',
         icon: 'business',
         status: 'complete',
         featured: true,
@@ -211,7 +214,8 @@ export const profile = {
         tags: ['JavaScript', 'Firebase', 'Firestore', 'PWA', 'Android', 'Real-world use'],
         link: { label: 'Open live application', href: 'https://mybusiness-green.vercel.app' },
       },
-      {
+{
+        group: 'MyBusiness',
         icon: 'ai',
         status: 'progress',
         kind: 'MYBUSINESS · AI DOCUMENT AUTOMATION',
@@ -219,7 +223,8 @@ export const profile = {
         text: 'An AI-powered text extraction agent integrated into MyBusiness to read and extract useful information from text-based content, reducing manual data entry and making business workflows quicker.',
         tags: ['AI Agent', 'Text Extraction', 'Automation', 'MyBusiness'],
       },
-      {
+{
+        group: 'MyBusiness',
         icon: 'ai',
         status: 'progress',
         kind: 'MYBUSINESS · AI WORK ASSISTANT',
@@ -227,7 +232,8 @@ export const profile = {
         text: 'An in-app work assistant for MyBusiness that helps users complete common tasks faster, understand requests and move through business actions with less manual effort.',
         tags: ['AI Assistant', 'Workflow Support', 'Business Automation', 'MyBusiness'],
       },
-      {
+{
+        group: 'MyBusiness',
         icon: 'business',
         status: 'complete',
         kind: 'MYBUSINESS · MANAGEMENT MODULE',
@@ -236,6 +242,72 @@ export const profile = {
         tags: ['Employee Management', 'Staff Operations', 'MyBusiness', 'Real-world use'],
       },
       {
+        group: 'MyBusiness',
+        icon: 'business',
+        status: 'complete',
+        kind: 'MYBUSINESS · FINANCE MODULE',
+        title: 'Expense Tracker',
+        text: 'An expense-tracking module integrated into MyBusiness, helping people record day-to-day business spending and keep expenses organized alongside sales, cashbook and financial records.',
+        tags: ['Expense Tracking', 'Business Finance', 'Cashbook', 'MyBusiness'],
+      },
+{
+        group: 'Connect PAF',
+        icon: 'connect',
+        status: 'progress',
+        kind: 'EDUCATION · STUDENT & CAMPUS PLATFORM',
+        title: 'Connect PAF',
+        text: 'An education-focused application designed to make academic work easier for students, teachers and administrators. It includes timetable and PDF workflows, admin-controlled role permissions, and CampusChat — a built-in messaging space where users can communicate with one another.',
+        tags: ['Education Platform', 'Role Management', 'CampusChat', 'Firebase'],
+      },
+{
+        group: 'Connect PAF',
+        icon: 'connect',
+        status: 'progress',
+        kind: 'CONNECT PAF · DOCUMENT AUTOMATION',
+        title: 'PDF Extraction Agent',
+        text: 'A PDF extraction agent integrated into Connect PAF to process uploaded academic documents and extract timetable and other relevant information, including content from scanned PDFs.',
+        tags: ['PDF Extraction', 'OCR', 'PDF.js', 'Connect PAF'],
+      },
+{
+        group: 'Connect PAF',
+        icon: 'connect',
+        status: 'progress',
+        kind: 'CONNECT PAF · ACCESS CONTROL',
+        title: 'Role Management System',
+        text: 'A role-based access management module integrated into Connect PAF. Administrators can assign roles and permissions so students, teachers and other users only access the features and information intended for them.',
+        tags: ['Role-Based Access', 'Admin Controls', 'Permissions', 'Connect PAF'],
+      },
+{
+        group: 'Management Systems',
+        icon: 'cpp',
+        status: 'complete',
+        kind: 'C++ · MANAGEMENT SYSTEM',
+        title: 'Library Management System',
+        text: 'A C++ library-management application for organizing book records and supporting common library operations such as managing entries, searching records and handling issue and return workflows.',
+        tags: ['C++', 'Record Management', 'Library'],
+      },
+{
+        group: 'Management Systems',
+        icon: 'cpp',
+        status: 'complete',
+        kind: 'C++ · MANAGEMENT SYSTEM',
+        title: 'Hospital Management System',
+        text: 'A C++ hospital-management project focused on organizing patient and hospital records and supporting structured day-to-day management workflows.',
+        tags: ['C++', 'Record Management', 'Hospital'],
+      },
+{
+        group: 'Management Systems',
+        icon: 'cpp',
+        status: 'progress',
+        slug: 'cpp-inventory',
+        kind: 'C++ · BUSINESS INVENTORY & MANAGEMENT',
+        title: 'Business Inventory and Management System',
+        text: 'A C++ console-based business inventory system featuring password-protected logins, runtime data editing and a mini database for storing and managing business records.',
+        tags: ['C++', 'Password Login', 'Runtime Data Editing', 'Mini Database'],
+        link: { label: 'More on GitHub', href: GITHUB },
+      },
+{
+        group: 'Games & Others',
         icon: 'ai',
         status: 'progress',
         featured: true,
@@ -247,7 +319,8 @@ export const profile = {
         tags: ['Python', 'Qwen 3 · 0.6B', 'LoRA', 'NLP'],
         link: { label: 'Explore model on Hugging Face', href: 'https://huggingface.co/sanaullah980/mybusiness-qwen3-0.6b-merged' },
       },
-      {
+{
+        group: 'Games & Others',
         icon: 'fragrance',
         status: 'complete',
         slug: 'rajput-fragrance',
@@ -257,57 +330,8 @@ export const profile = {
         tags: ['Website', 'E-commerce', 'WhatsApp ordering'],
         link: { label: 'Visit live website', href: 'https://www.rajputfragrance.online/' },
       },
-      {
-        icon: 'connect',
-        status: 'progress',
-        kind: 'EDUCATION · STUDENT & CAMPUS PLATFORM',
-        title: 'Connect PAF',
-        text: 'An education-focused application designed to make academic work easier for students, teachers and administrators. It includes timetable and PDF workflows, admin-controlled role permissions, and CampusChat — a built-in messaging space where users can communicate with one another.',
-        tags: ['Education Platform', 'Role Management', 'CampusChat', 'Firebase'],
-      },
-      {
-        icon: 'connect',
-        status: 'progress',
-        kind: 'CONNECT PAF · DOCUMENT AUTOMATION',
-        title: 'PDF Extraction Agent',
-        text: 'A PDF extraction agent integrated into Connect PAF to process uploaded academic documents and extract timetable and other relevant information, including content from scanned PDFs.',
-        tags: ['PDF Extraction', 'OCR', 'PDF.js', 'Connect PAF'],
-      },
-      {
-        icon: 'connect',
-        status: 'progress',
-        kind: 'CONNECT PAF · ACCESS CONTROL',
-        title: 'Role Management System',
-        text: 'A role-based access management module integrated into Connect PAF. Administrators can assign roles and permissions so students, teachers and other users only access the features and information intended for them.',
-        tags: ['Role-Based Access', 'Admin Controls', 'Permissions', 'Connect PAF'],
-      },
-      {
-        icon: 'cpp',
-        status: 'complete',
-        kind: 'C++ · MANAGEMENT SYSTEM',
-        title: 'Library Management System',
-        text: 'A C++ library-management application for organizing book records and supporting common library operations such as managing entries, searching records and handling issue and return workflows.',
-        tags: ['C++', 'Record Management', 'Library'],
-      },
-      {
-        icon: 'cpp',
-        status: 'complete',
-        kind: 'C++ · MANAGEMENT SYSTEM',
-        title: 'Hospital Management System',
-        text: 'A C++ hospital-management project focused on organizing patient and hospital records and supporting structured day-to-day management workflows.',
-        tags: ['C++', 'Record Management', 'Hospital'],
-      },
-      {
-        icon: 'cpp',
-        status: 'progress',
-        slug: 'cpp-inventory',
-        kind: 'C++ · BUSINESS INVENTORY & MANAGEMENT',
-        title: 'Business Inventory and Management System',
-        text: 'A C++ console-based business inventory system featuring password-protected logins, runtime data editing and a mini database for storing and managing business records.',
-        tags: ['C++', 'Password Login', 'Runtime Data Editing', 'Mini Database'],
-        link: { label: 'More on GitHub', href: GITHUB },
-      },
-      {
+{
+        group: 'Games & Others',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · GAME DEVELOPMENT',
@@ -315,7 +339,8 @@ export const profile = {
         text: 'A console-based C++ Tic-Tac-Toe game built around turn handling, board updates and win or draw detection.',
         tags: ['C++', 'Game Logic', 'Console App'],
       },
-      {
+{
+        group: 'Games & Others',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · GAME DEVELOPMENT',
@@ -323,7 +348,8 @@ export const profile = {
         text: 'A C++ Snake game implementing movement, food collection, collision detection and score tracking.',
         tags: ['C++', 'Game Logic', 'Console App'],
       },
-      {
+{
+        group: 'Games & Others',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · WORD GAME',
@@ -331,14 +357,15 @@ export const profile = {
         text: 'A C++ word-guessing game that uses input handling, attempts and feedback to let players work out a hidden word.',
         tags: ['C++', 'Strings', 'Game Logic'],
       },
-      {
+{
+        group: 'Games & Others',
         icon: 'cpp',
         status: 'complete',
         kind: 'C++ · SECURITY UTILITY',
         title: 'Password Analyzing System',
         text: 'A C++ utility that evaluates password strength using checks such as length and character variety, then provides feedback on password quality.',
         tags: ['C++', 'String Processing', 'Password Strength'],
-      },
+      }
     ] satisfies Project[],
     statusLabels: { progress: 'IN DEVELOPMENT', complete: 'COMPLETED', soon: 'COMING SOON' },
     soonNote: 'Will be available soon',
