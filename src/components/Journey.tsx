@@ -1,11 +1,10 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { profile, type Chapter } from '@/content/profile';
 import { Words } from './Words';
 
-const StoryAvatar = dynamic(() => import('./StoryAvatar'), { ssr: false });
+import StoryAvatar from './StoryAvatar';
 
 const chapters: Chapter[] = profile.story.chapters;
 

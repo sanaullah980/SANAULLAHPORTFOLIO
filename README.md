@@ -19,7 +19,5 @@ Everything is in `src/content/profile.ts`: text, email, projects, chapters, Sana
 - Connect PAF has `soon: true` and no link. When it is ready, remove `soon` and add
   `link: { label: 'Open Connect PAF', href: '<url>' }` and set `status: 'progress'`.
 
-## Avatar
-`public/models/avatar.fbx` is dressed in a navy three-piece suit at load time (`src/lib/avatar.ts`).
-It walks side-on while you scroll, then turns to the text and gestures (wave / present / think / point)
-per chapter, blinks, smiles and follows the cursor. Without WebGL the photo is shown instead.
+## Journey portrait
+The journey section shows your photo (`public/photo.jpg`) as a static framed portrait.
