@@ -1,44 +1,9 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { profile, type Project, type ProjectIconKey } from '@/content/profile';
+import { profile, type Project } from '@/content/profile';
 import { SanaDetails } from './SanaAI';
-
-function ProjectIcon({ kind }: { kind: ProjectIconKey }) {
-  switch (kind) {
-    case 'business':
-      return (
-        <div className="project-icon icon-business" aria-hidden="true">
-          <span>MB</span>
-          <b>+</b>
-        </div>
-      );
-    case 'ai':
-      return (
-        <div className="project-icon icon-ai" aria-hidden="true">
-          <span className="ai-orb">✳</span>
-        </div>
-      );
-    case 'fragrance':
-      return (
-        <div className="project-icon icon-fragrance" aria-hidden="true">
-          ✦
-        </div>
-      );
-    case 'connect':
-      return (
-        <div className="project-icon icon-connect" aria-hidden="true">
-          ↗
-        </div>
-      );
-    case 'cpp':
-      return (
-        <div className="project-icon icon-cpp" aria-hidden="true">
-          C<span>++</span>
-        </div>
-      );
-  }
-}
+import { ProjectPreview } from './ProjectPreview';
 
 export function Projects() {
   const { projects } = profile;
@@ -65,7 +30,7 @@ export function Projects() {
                 <i /> {projects.statusLabels[p.status]}
               </span>
             </div>
-            <ProjectIcon kind={p.icon} />
+            <ProjectPreview kind={p.icon} />
             <p className="project-kind">{p.kind}</p>
             <h3>{p.title}</h3>
             <p>{p.text}</p>
@@ -74,20 +39,16 @@ export function Projects() {
                 <span key={t}>{t}</span>
               ))}
             </div>
-            {p.detail === 'sana' ? (
-              <button type="button" className="project-detail-btn" aria-haspopup="dialog" onClick={() => setSanaOpen(true)}>
-                View details <span aria-hidden="true">→</span>
-              </button>
-            ) : p.soon ? (
+            {p.soon ? (
               <span className="project-soon" aria-label="Available soon">
                 {projects.soonNote}
               </span>
             ) : (
-              p.link && (
-                <a className="project-link" href={p.link.href} target="_blank" rel="noreferrer">
-                  {p.link.label} <span aria-hidden="true">↗</span>
-                </a>
-              )
+              <div className="project-actions">
+                {p.slug && <a className="project-link" href={`/projects/${p.slug}`}>Explore case study <span aria-hidden="true">→</span></a>}
+                {p.detail === 'sana' && <button type="button" className="project-detail-btn" aria-haspopup="dialog" onClick={() => setSanaOpen(true)}>Try browser demos <span aria-hidden="true">↗</span></button>}
+                {p.link && <a className="project-external-link" href={p.link.href} target="_blank" rel="noreferrer">{p.link.label} ↗</a>}
+              </div>
             )}
           </article>
         ))}

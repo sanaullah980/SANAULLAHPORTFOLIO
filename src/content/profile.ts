@@ -10,6 +10,7 @@ export interface Project {
   icon: ProjectIconKey;
   status: ProjectStatus;
   featured?: boolean;
+  slug?: string;
   kind: string;
   title: string;
   text: string;
@@ -46,9 +47,9 @@ const GITHUB = 'https://github.com/sanaullah980';
 export const profile = {
   name: 'Sanaullah',
   initial: 'S',
-  siteTitle: 'Sanaullah — Data Science, AI/ML & Software',
+  siteTitle: 'Sanaullah — Software Developer & Applied AI/ML Engineer',
   description:
-    'Sanaullah — BS Data Science student at PAF-IAST. I build AI-powered tools and business-management software.',
+    'Sanaullah is a Software Developer and BS Data Science student at PAF-IAST, building practical web, Android and AI-powered applications.',
   ogDescription: 'I build practical software and intelligent systems for real-world business problems.',
   photo: '/photo.jpg',
   github: GITHUB,
@@ -64,11 +65,11 @@ export const profile = {
   navCta: 'Get in touch',
 
   hero: {
-    eyebrow: 'DATA SCIENCE · AI/ML · SOFTWARE',
-    titleLine1: 'Smart software,',
-    titleLine2: 'real-world impact.',
+    eyebrow: 'SOFTWARE DEVELOPMENT · APPLIED AI/ML · DATA SCIENCE',
+    titleLine1: 'Software developer,',
+    titleLine2: 'applied AI/ML engineer.',
     lead:
-      'I’m Sanaullah — a BS Data Science student at PAF-IAST who designs AI-powered tools and business-management software, from multilingual language-model projects to shop-operations systems.',
+      'I’m Sanaullah, a BS Data Science student at PAF-IAST. I build practical web and Android applications, business software and multilingual AI systems — combining software engineering, machine learning and data-driven problem solving.',
     primaryCta: 'View my work',
     primaryHref: '#projects',
     secondaryCta: 'View GitHub',
@@ -168,7 +169,7 @@ export const profile = {
         title: 'Business and web software',
         text: 'Designing and building practical applications — from a shop-operations management system to a university timetable tool — with JavaScript, TypeScript and Firebase.',
         tags: ['Web apps', 'JavaScript', 'Firebase'],
-        stats: [{ value: '5', label: 'Projects' }, { value: 'PWA', label: 'Installable web apps' }, { value: 'Firebase', label: 'Back-ends' }],
+        stats: [{ value: '5', label: 'Projects' }, { value: 'PWA', label: 'Installable web app' }, { value: 'Firebase', label: 'Back-ends' }],
       },
       {
         marker: '03',
@@ -203,26 +204,30 @@ export const profile = {
         icon: 'business',
         status: 'progress',
         featured: true,
-        kind: 'BUSINESS MANAGEMENT · WEB / PWA',
+        slug: 'mybusiness',
+        kind: 'BUSINESS MANAGEMENT · WEB / ANDROID',
         title: 'MyBusiness',
         text: 'A business-management system for shop operations, covering inventory, sales, customer and supplier ledgers, expenses, cashbook, reports, staff and backup. Under active development.',
-        tags: ['JavaScript', 'Firebase', 'Firestore', 'PWA'],
-        link: { label: 'Open project', href: 'https://mybusiness-green.vercel.app' },
+        tags: ['JavaScript', 'Firebase', 'Firestore', 'PWA', 'Android'],
+        link: { label: 'Open live application', href: 'https://mybusiness-green.vercel.app' },
       },
       {
         icon: 'ai',
         status: 'progress',
         featured: true,
         detail: 'sana',
-        kind: 'ARTIFICIAL INTELLIGENCE · BUSINESS INTELLIGENCE',
+        slug: 'sana-ai',
+        kind: 'ARTIFICIAL INTELLIGENCE · LANGUAGE MODELS',
         title: 'Sana AI',
         text: 'A multilingual business assistant that routes English, Urdu and Roman Urdu commands to three engines — a business analyzer, a sales predictor and a financial calculator — using a fine-tuned Qwen model (LoRA).',
-        tags: ['Analyzer', 'Predictor', 'Calculator', 'Qwen · LoRA'],
+        tags: ['Python', 'Qwen 3 · 0.6B', 'LoRA', 'NLP'],
+        link: { label: 'Explore model on Hugging Face', href: 'https://huggingface.co/sanaullah980/mybusiness-qwen3-0.6b-merged' },
       },
       {
         icon: 'fragrance',
         status: 'complete',
-        kind: 'E-COMMERCE · WEBSITE',
+        slug: 'rajput-fragrance',
+        kind: 'E-COMMERCE · LIVE WEBSITE',
         title: 'Rajput Fragrance',
         text: 'A fragrance-shopping website presenting product collections and brand information, with WhatsApp ordering and a cash-on-delivery order form.',
         tags: ['Website', 'E-commerce', 'WhatsApp ordering'],
@@ -230,33 +235,35 @@ export const profile = {
       },
       {
         icon: 'connect',
-        status: 'soon',
-        soon: true,
-        kind: 'EDUCATION · TIMETABLE TOOL',
+        status: 'progress',
+        slug: 'connect-paf',
+        kind: 'EDUCATION · DOCUMENT AUTOMATION',
         title: 'Connect PAF',
         text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find.',
         tags: ['TypeScript', 'PDF.js', 'OCR', 'Firebase'],
+        link: { label: 'View source repository', href: 'https://github.com/sanaullah980/connect' },
       },
       {
         icon: 'cpp',
         status: 'progress',
-        kind: 'PROGRAMMING FUNDAMENTALS · CONSOLE',
+        slug: 'cpp-inventory',
+        kind: 'C++ · SYSTEMS FUNDAMENTALS',
         title: 'C++ Inventory System',
         text: 'A command-line inventory-management project for practicing C++, program structure, and problem-solving. Additional implementation details will be added as the project develops.',
         tags: ['C++', 'Console app', 'Programming fundamentals'],
         link: { label: 'More on GitHub', href: GITHUB },
       },
     ] satisfies Project[],
-    statusLabels: { progress: 'IN PROGRESS', complete: 'COMPLETED', soon: 'COMING SOON' },
+    statusLabels: { progress: 'IN DEVELOPMENT', complete: 'LIVE PROJECT', soon: 'COMING SOON' },
     soonNote: 'Available soon',
   },
 
   skills: {
-    eyebrow: 'SKILLS & EXPERTISE',
+    eyebrow: 'TECHNICAL TOOLKIT · SKILLS & EXPERTISE',
     title: 'What I',
     titleAccent: 'work with.',
     intro:
-      'The technologies and disciplines I use to build software and intelligent systems — grouped by area, with no inflated ratings.',
+      'A practical toolkit across applied AI, software development, mobile applications and data science. Technologies are included where they connect to my learning and project work.',
     roles: [
       'Machine Learning',
       'NLP',
@@ -310,7 +317,7 @@ export const profile = {
     eyebrow: 'PROFILE',
     titleLine1: 'Data, software,',
     titleLine2: 'and applied AI.',
-    text: 'I’m a Data Science student who works across software and AI. I build practical systems — from business-management workflows to multilingual language-model projects — with a focus on tools that help businesses understand and plan with their own numbers.',
+    text: 'I’m a Data Science student and hands-on developer interested in the space where software engineering, machine learning and real-world problem solving meet. I enjoy taking an idea from requirements and system design through implementation, testing and iteration. My projects focus on useful applications: business operations, document automation and multilingual AI.',
     degree: 'BS Data Science',
     school: 'PAF-IAST · Pakistan · 3rd Semester',
   },

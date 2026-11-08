@@ -1,10 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { profile } from '@/content/profile';
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const homePath = pathname === '/';
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ export function Header() {
 
   return (
     <header className="site-header" id="top" ref={headerRef}>
-      <a className="brand" href="#top" aria-label={`${profile.name} home`}>
+      <a className="brand" href={homePath ? '#top' : '/#top'} aria-label={`${profile.name} home`}>
         {profile.initial}
         <span>.</span>
       </a>
@@ -40,11 +43,11 @@ export function Header() {
       </button>
       <nav className={`nav${open ? ' is-open' : ''}`} id="primary-nav" aria-label="Main navigation">
         {profile.nav.map((item) => (
-          <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+          <a key={item.href} href={homePath ? item.href : `/${item.href}`} onClick={() => setOpen(false)}>
             {item.label}
           </a>
         ))}
-        <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>
+        <a className="nav-contact" href={homePath ? '#contact' : '/#contact'} onClick={() => setOpen(false)}>
           {profile.navCta} <span aria-hidden="true">↗</span>
         </a>
       </nav>
