@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { profile, type Chapter } from '@/content/profile';
 import { Words } from './Words';
 
-import StoryAvatar from './StoryAvatar';
 
 const chapters: Chapter[] = profile.story.chapters;
 
@@ -37,8 +36,8 @@ function ChapterCard({ chapter, journey }: { chapter: Chapter; journey: boolean 
 
 /**
  * Vertical timeline by default (phones, reduced motion, no JS).
- * On desktop, vertical scroll drives a horizontal walk and the 3D character
- * walks along the ground line while the chapters slide past.
+ * On desktop, vertical scroll drives a horizontal walk and the chapters
+ * slide past the ground line while the chapters slide past.
  */
 export function Journey() {
   const [journey, setJourney] = useState(false);
@@ -196,8 +195,6 @@ export function Journey() {
         <div className="journey-counter" aria-hidden="true">
           <b>{chapters[active].marker}</b> / {String(chapters.length).padStart(2, '0')}
         </div>
-
-        <StoryAvatar walking={walking} chapter={activeRef} photo={profile.photo} />
 
         <span className="journey-hint" aria-hidden="true" data-visible={cue ? '' : undefined}>
           {profile.story.cue}

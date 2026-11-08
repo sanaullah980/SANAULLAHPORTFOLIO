@@ -235,13 +235,12 @@ export const profile = {
       },
       {
         icon: 'connect',
-        status: 'progress',
-        slug: 'connect-paf',
+        status: 'soon',
+        soon: true,
         kind: 'EDUCATION · DOCUMENT AUTOMATION',
         title: 'Connect PAF',
-        text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find.',
+        text: 'A university timetable tool designed to process schedules from uploaded PDFs — including scanned documents — and make relevant timetable information easy to find. Not public yet.',
         tags: ['TypeScript', 'PDF.js', 'OCR', 'Firebase'],
-        link: { label: 'View source repository', href: 'https://github.com/sanaullah980/connect' },
       },
       {
         icon: 'cpp',

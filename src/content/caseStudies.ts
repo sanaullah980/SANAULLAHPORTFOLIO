@@ -55,26 +55,7 @@ export const caseStudies: CaseStudy[] = [
     note: 'Sana AI is an active research and development project. Forecasting and analysis capabilities are being developed and evaluated; they should not be interpreted as a deployed, production-validated service.'
   },
   {
-    slug: 'connect-paf', number: '03', title: 'Connect PAF', category: 'EDUCATION · PDF / OCR AUTOMATION',
-    summary: 'A timetable automation concept designed to turn a university timetable document into organized schedules that students can find by department and semester.',
-    status: 'Development',
-    problem: 'University timetable documents can contain schedules for many departments and semesters in one file. Students have to search through the full document to find the classes relevant to them.',
-    approach: 'Process uploaded timetable PDFs, extract selectable text where available and use OCR for scanned pages, then organize the extracted schedule information around department and semester.',
-    capabilities: ['PDF timetable upload workflow', 'Selectable-text PDF extraction', 'Scanned-document OCR support', 'Department and semester classification', 'Organized timetable presentation'],
-    architecture: [
-      { label: 'Timetable PDF', detail: 'One document may contain multiple departments and semesters' },
-      { label: 'Document extraction', detail: 'Text extraction for digital PDFs and OCR for scanned pages' },
-      { label: 'Schedule parsing', detail: 'Identify timetable entries and their relationships' },
-      { label: 'Department / semester', detail: 'Organize records for the relevant student group' },
-      { label: 'Student timetable', detail: 'Present a focused, readable schedule' },
-    ],
-    engineering: ['Handle both digital-text and scanned PDF inputs.', 'Design extraction for a combined document rather than assuming one PDF per department.', 'Normalize extracted information before presenting a student-specific schedule.', 'Keep the user workflow simple: upload once, find the relevant timetable.'],
-    stack: ['TypeScript', 'PDF.js', 'OCR', 'Firebase'],
-    links: [{ label: 'Connect PAF repository', href: 'https://github.com/sanaullah980/connect' }],
-    note: 'This page describes the intended system and its technical approach. It does not claim that every extraction and OCR workflow is already deployed.'
-  },
-  {
-    slug: 'rajput-fragrance', number: '04', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
+    slug: 'rajput-fragrance', number: '03', title: 'Rajput Fragrance', category: 'E-COMMERCE · LIVE WEBSITE',
     summary: 'A live fragrance-brand website that presents product collections and gives customers a direct path to place an order.',
     status: 'Live website',
     problem: 'A product-focused fragrance brand needs a clear online presence where visitors can browse products, understand the brand and move easily from discovery to ordering.',
@@ -91,7 +72,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: 'Visit live website', href: 'https://www.rajputfragrance.online/' }],
   },
   {
-    slug: 'cpp-inventory', number: '05', title: 'C++ Inventory System', category: 'C++ · PROGRAMMING FUNDAMENTALS',
+    slug: 'cpp-inventory', number: '04', title: 'C++ Inventory System', category: 'C++ · PROGRAMMING FUNDAMENTALS',
     summary: 'A console-based inventory-management project used to practice structured programming and apply core C++ problem-solving skills to a practical domain.',
     status: 'Learning project',
     problem: 'Inventory is a useful domain for practicing how programs represent records, accept user input and organize operations around stored information.',

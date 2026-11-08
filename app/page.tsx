@@ -8,6 +8,7 @@ import { About } from '@/components/About';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { RevealObserver } from '@/components/RevealObserver';
+import { ScrollProgress } from '@/components/ScrollProgress';
 import { profile } from '@/content/profile';
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <ScrollProgress />
       <Ambient />
       <Header />
       <main id="main">

@@ -27,3 +27,8 @@
 - All 23 TypeScript/TSX files passed a TypeScript transpilation syntax check.
 - A full Next.js build/typecheck could not be run in this environment because npm registry access failed (DNS/network error while downloading Next.js dependencies).
 - Run `npm install`, `npm run typecheck`, and `npm run build` locally before deploying.
+
+## Latest round
+- Removed the standing photo from the journey section (the homepage hero portrait is unchanged); the chapters are now centred.
+- Connect PAF is back to "Coming soon" with no link, no case-study page and no sitemap entry. To publish it later, add `link`/`slug` in `src/content/profile.ts` and a matching entry in `src/content/caseStudies.ts`, and remove `soon`.
+- Added a thin scroll-progress bar at the top of the page.
