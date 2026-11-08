@@ -480,10 +480,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-
 .skill-panel { min-height: 280px; }
 .skill-panel .skill-list { margin-top: 18px; }
 
-/* Journey: static portrait instead of the 3D avatar */
-.journey-avatar-3d { width: clamp(220px, 22vw, 330px); height: auto; bottom: calc(var(--ground, 150px) + 4px); }
-.story-photo { margin: 0; position: relative; }
-.story-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 18%; border-radius: 26px; border: 1px solid var(--glass-border); box-shadow: 0 24px 50px -22px rgba(30, 20, 10, .45); }
-.story-photo figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 8px 12px; border-radius: 12px; background: var(--glass-bg-strong); border: 1px solid var(--glass-edge); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font: 500 11.5px var(--mono); letter-spacing: .04em; color: var(--text); text-align: center; }
-
-.journey-avatar-3d { left: clamp(150px, 17vw, 280px) !important; transition: none !important; }
+/* Journey: your photo (background removed) standing where the avatar used to be - it does not move */
+.journey-avatar-3d { --av-h: clamp(360px, 62vh, 660px); width: calc(var(--av-h) * .5); height: var(--av-h); left: clamp(150px, 17vw, 280px) !important; bottom: calc(var(--ground, 150px) - 6px); transform: translateX(-50%); transition: none !important; }
+.story-photo { margin: 0; width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; }
+.story-photo img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 18px 22px rgba(30, 20, 10, .22)); }
